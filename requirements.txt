@@ -1,0 +1,4 @@
+configparser
+xlrd
+xlwt
+Tkinter
