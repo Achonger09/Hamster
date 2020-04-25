@@ -19,6 +19,9 @@ class ConfigLoad(object):
     def get(self,*args):
         return self.conf.get(*args)
 
+    def options(self,session):
+        return self.conf.items(session)
+
 '''
 if __name__ == '__main__':
     config = ConfigLoad()
