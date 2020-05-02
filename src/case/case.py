@@ -9,6 +9,7 @@ class Case(object):
         self.case_name =case_name
         self.case_detail = case_detail
         self.case_log_path = None
+        self.case_log = None
         self.case_result = None
 
     def get_case_name(self):
@@ -28,3 +29,9 @@ class Case(object):
 
     def get_case_result(self):
         return self.case_result
+
+    def get_case_log(self):
+        return "temp"
+
+    def set_case_log(self,log):
+        self.case_log = log
