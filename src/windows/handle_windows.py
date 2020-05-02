@@ -7,7 +7,7 @@ print(os.path.abspath('../config/'))
 from config_load import ConfigLoad
 
 class HandleWindows(object):
-
+    ##处理windows窗体函数，目前纸打印窗体，具体功能待添加
     def __init__(self,cfg):
         size = cfg.get("windows","size")
         self.root_windows = tk.Tk()

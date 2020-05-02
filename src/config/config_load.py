@@ -11,6 +11,7 @@ class ConfigLoad(object):
     def __init__(self):
         root_path = os.path.dirname(os.path.abspath(__file__))
         print(root_path)
+        ##目前路径固定，暂不修改
         config_path = os.path.join(root_path,"..\\..\\config\\config.ini")
         print(config_path)
         self.conf= configparser.ConfigParser()

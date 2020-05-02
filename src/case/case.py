@@ -3,7 +3,7 @@
 
 class Case(object):
     '''
-    Case 类
+    Case 类，存放Case信息的字段
     '''
     def __init__(self,case_name,case_detail):
         self.case_name =case_name

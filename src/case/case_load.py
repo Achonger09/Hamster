@@ -4,18 +4,16 @@ import xlrd,xlwt
 from case import Case
 
 class CaseLoad(object):
+    ##初始化Excel表信息，将其加载到caselist中
 
     def __init__(self,in_case_path):
         self.input_case_path = in_case_path
+        ##一下信息带适配为从配置文件获取
         self.sheet_name = "Sheet1"
         self.case_name = "Case_name"
         self.case_step = "Case_step"
         self.case_except = "Case_except"
         self.case_other = "other"
-        '''
-        self.case_log = "Log"
-        self.case_result = "Result"
-        '''
 
     def _init_excel(self):
         data = xlrd.open_workbook(self.input_case_path)
@@ -36,6 +34,7 @@ class CaseLoad(object):
             case_name = self.table.cell(i,self.case_name_index).value
             case_step = self.table.cell(i,self.case_step_index).value
             print("ADD : "+case_name + case_step)
+            ##目前只使用casename,casestep初始化，后续有变动在适配
             case_list.append(Case(case_name,case_step))
         return case_list
 

@@ -7,9 +7,9 @@ import xlwt
 import os
 
 class HandleCase(object):
+    ##处理Excel表信息的总入口
 
     def __init__(self,excel_path):
-        ##初始化所有case path路径下的log文件
         excel_path = "D:\\python_demo\\Hamster\\test\\test.xls"
         case_path = "D:\\python_demo\\Hamster\\test\\"
         self.log_path_list = self._init_log_path_list(case_path)
@@ -23,6 +23,7 @@ class HandleCase(object):
         self.case_result = "Result"
 
     def _init_log_path_list(self,case_dir):
+        ##初始化所有case path路径下的log文件
         log_path_list = list()
         for path,_,names in os.walk(case_dir):
             print(names)
@@ -66,6 +67,7 @@ class HandleCase(object):
         self.get_current_case().set_case_result(result)
 
     def export_case_to_excel(self,excel_path):
+        ##将内存中数据输出指定Excel表
         new_case_list = list()
         new_case_list.append([self.case_name,self.case_step,self.case_log,self.case_result])
         for case in self.case_list:
@@ -79,6 +81,7 @@ class HandleCase(object):
         myWorkbook.save(excel_path)
 
     def next(self):
+        ##下一个case
         self.current_index += 1
 
 
