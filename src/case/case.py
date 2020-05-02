@@ -31,7 +31,7 @@ class Case(object):
         return self.case_result
 
     def get_case_log(self):
-        return "temp"
+        return self.case_log
 
     def set_case_log(self,log):
         self.case_log = log

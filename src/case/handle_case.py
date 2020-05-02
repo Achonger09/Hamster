@@ -4,11 +4,16 @@
 from case import Case
 from case_load import CaseLoad
 import xlwt
+import os
 
 class HandleCase(object):
 
     def __init__(self,excel_path):
+        ##初始化所有case path路径下的log文件
         excel_path = "D:\\python_demo\\Hamster\\test\\test.xls"
+        case_path = "D:\\python_demo\\Hamster\\test\\"
+        self.log_path_list = self._init_log_path_list(case_path)
+        print(self.log_path_list)
         self.current_index = 0
         case_loader = CaseLoad(excel_path)
         self.case_list = case_loader.case_load()
@@ -16,6 +21,16 @@ class HandleCase(object):
         self.case_step = "Case_step"
         self.case_log = "Log"
         self.case_result = "Result"
+
+    def _init_log_path_list(self,case_dir):
+        log_path_list = list()
+        for path,_,names in os.walk(case_dir):
+            print(names)
+            ##此处可做一个过滤器
+            for name in names:
+                if name.lower().endswith("log"):
+                    log_path_list.append(os.path.join(path,name))
+        return log_path_list
 
     def get_current_case(self):
         return  self.case_list[self.current_index]
@@ -27,10 +42,25 @@ class HandleCase(object):
         return self.get_current_case().get_case_detail()
 
     def get_current_case_log(self):
+        log_path = self._locate_log_path()
+        if log_path:
+            ##待适配为读取文件内容
+            log = log_path
+        self.set_current_log(log)
         return self.get_current_case().get_case_log()
 
     def set_current_log(self,log):
         self.get_current_case().set_case_log(log)
+
+    def _locate_log_path(self):
+        ##根据case name 定位 同名的log文件，不区分大小写
+        case_name = self.get_current_case().get_case_name()
+        for log in self.log_path_list:
+            print("cp {} with {}".format(case_name,log))
+            if not log.lower().split("\\")[-1].find(case_name.lower()) == -1:
+                print("-----------------{}".format(log))
+                return log
+        return None
 
     def set_current_case_result(self,result):
         self.get_current_case().set_case_result(result)
@@ -40,7 +70,7 @@ class HandleCase(object):
         new_case_list.append([self.case_name,self.case_step,self.case_log,self.case_result])
         for case in self.case_list:
             new_case_list.append([case.get_case_name(),case.get_case_detail(),
-                                 case.get_case_log_path(),case.get_case_result()])
+                                 case.get_case_log(),case.get_case_result()])
         myWorkbook = xlwt.Workbook()
         mySheet = myWorkbook.add_sheet('text_excel')
         for i in range(len(new_case_list)):
@@ -59,7 +89,8 @@ if __name__ == '__main__':
     ha = HandleCase("")
     print("0:{}".format(ha.get_current_case()))
     ha.set_current_case_result("True")
-    ha.set_current_log("log")
+    ha.get_current_case_log()
+    #ha.g
     print("0.1:{}".format(ha.get_current_case()))
     ha.next()
     print("1:{}".format(ha.get_current_case()))
