@@ -121,6 +121,8 @@ class HandleWindows(object):
         context = self.handle_case.get_current_case_log()
         tmp_list= list()
         index_list = self._find_index_all(res,context,tmp_list)
+        if not index_list[-1] == len(context):
+            index_list.append(len(context))
         print(index_list)
         if not len(index_list) == 0:
             self.log_text.delete("0.0","end")

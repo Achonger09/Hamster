@@ -54,7 +54,9 @@ class HandleCase(object):
             log_path = self._locate_log_path()
         if log_path:
             ##待适配为读取文件内容
-            log = log_path
+            with open(log_path,'r') as f:
+                log = f.read()
+            #log = log_path
             self.set_current_log(log)
         return self.get_current_case().get_case_log()
 
