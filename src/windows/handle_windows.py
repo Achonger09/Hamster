@@ -7,6 +7,8 @@ print(os.path.abspath('../config/'))
 from config_load import ConfigLoad
 from src.case.handle_case import  HandleCase
 from tkinter import filedialog
+from tkinter.simpledialog import askstring
+import re
 
 class HandleWindows(object):
     ##处理windows窗体函数，目前纸打印窗体，具体功能待添加
@@ -45,8 +47,14 @@ class HandleWindows(object):
         py_frame3 = tk.LabelFrame(self.root_windows,text = "Logs",width = 340,height = 520)
         py_frame3.place(x=590,y=5)
         context = self.handle_case.get_current_case_log()
-        theLabel = tk.Label(py_frame3,width=45,height=27,text=context ,wraplength = 300,justify = 'left',anchor = 'nw')
-        theLabel.place(x=5,y=5)
+        log_text = tk.Text(py_frame3,width=45,height=37)
+        log_text.insert(tk.INSERT,context)
+        log_text.place(x=5,y=5)
+        #theLabel = tk.Label(py_frame3,width=45,height=27,text=context ,wraplength = 300,justify = 'left',anchor = 'nw')
+        #theLabel.place(x=5,y=5)
+        log_text.bind('<Control-f>',self._search_log)
+        self.log_text = log_text
+
 
     def _show_case_result(self,text = "Result",width = 220,height = 520):
         py_frame4 = tk.LabelFrame(self.root_windows,text = "Result",width = 220,height = 520)
@@ -104,6 +112,43 @@ class HandleWindows(object):
         ##目前写死路径，后面改为时间戳形式的路径
         ##或者用户选择保存在哪里
         self.handle_case.export_case_to_excel("D:\\python_demo\\Hamster\\test\\test2.xls")
+
+    def _search_log(self,event):
+        ##Ctrl+F触发此接口
+        print("ctrl+f---->search")
+        res = askstring("Search", "Key Words")
+        print(res)
+        context = self.handle_case.get_current_case_log()
+        tmp_list= list()
+        index_list = self._find_index_all(res,context,tmp_list)
+        print(index_list)
+        if not len(index_list) == 0:
+            self.log_text.delete("0.0","end")
+            self.log_text.tag_delete("1.0","end")
+            self.log_text.tag_config('blue',foreground = 'blue')
+            begin = 0
+            for index in index_list:
+                #self.log_text.tag_add('blue',index,index+len(res))
+                print(begin,index+len(res))
+                self.log_text.insert(tk.CURRENT,context[begin:index])
+                self.log_text.insert(tk.CURRENT,context[index:index+len(res)],'blue')
+                begin = index+len(res)
+            self.log_text.place(x=5,y=5)
+
+    def _find_index_all(self,key_word,context,index_list):
+        ##搜寻所有关键字的下表，作为列表元素返回
+        print("find {} in {}".format(key_word.lower(),context.lower()))
+        if context == None or len(context) < len(key_word):
+            return index_list
+        end = context.lower().find(key_word.lower())
+        if not end == -1:
+            new_context = context[end+len(key_word):]
+            if not len(index_list) == 0:
+                end = end+len(key_word) + index_list[-1]
+            index_list.append(end)
+            return self._find_index_all(key_word,new_context,index_list)
+        else:
+            return index_list
 
     def run_windows(self):
         self._show_case_list()
