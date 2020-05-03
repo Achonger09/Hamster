@@ -19,7 +19,7 @@ class HandleWindows(object):
         root_windows.title("")
         root_windows.geometry("1170x600")
         export_path="D:\\python_demo\\Hamster\\test\\test2.xls"
-        ha = HandleCase("")
+        ha = HandleCase("D:\\python_demo\\Hamster\\test\\test.xls")
         self.handle_case = ha
         self.root_windows = root_windows
 
@@ -33,6 +33,7 @@ class HandleWindows(object):
         self.theLB = theLB
         #双击事件
         theLB.bind('<Double-Button-1>',self._reflush_case)
+        theLB.bind('<Control-f>',self._open_excel)
         #for i in range(30):
         #    theLB.insert(tk.END,"Test_abcdefghjgl_00"+str(i))
 
@@ -108,10 +109,21 @@ class HandleWindows(object):
         self.handle_case.set_current_log(log_path)
         self._show_case_logs()
 
+    def _open_excel(self):
+        pass
+    '''
+        ##通过文件管理器导入case文件,指定初始目录
+        log_path = filedialog.askopenfilename(initialdir="D:\\python_demo\\Hamster\\")
+        print(log_path)
+        self.handle_case.set_current_log(log_path)
+        self._show_case_logs()
+    '''
     def _save_excel(self):
         ##目前写死路径，后面改为时间戳形式的路径
         ##或者用户选择保存在哪里
-        self.handle_case.export_case_to_excel("D:\\python_demo\\Hamster\\test\\test2.xls")
+        export_path = filedialog.asksaveasfilename(defaultextension='.xls')
+        print(export_path)
+        self.handle_case.export_case_to_excel(export_path)
 
     def _search_log(self,event):
         ##Ctrl+F触发此接口

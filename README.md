@@ -21,3 +21,5 @@ handle_file
 3.log内容搜索 -完成
 4.异常优化
 5.是否加入日志系统，根据日志定位操作出现的异常
+6.excel目录通过ctrl+n指定目录导入，需要windows_handler适配异常
+  excel导出，指定目录导出

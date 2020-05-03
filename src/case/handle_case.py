@@ -11,7 +11,8 @@ class HandleCase(object):
 
     def __init__(self,excel_path):
         ##暂时写死路径，后续通过配置文件传入
-        excel_path = "D:\\python_demo\\Hamster\\test\\test.xls"
+        #excel_path = "D:\\python_demo\\Hamster\\test\\test.xls"
+        #log path从配置文件读取
         case_path = "D:\\python_demo\\Hamster\\test\\"
         self.log_path_list = self._init_log_path_list(case_path)
         print(self.log_path_list)
