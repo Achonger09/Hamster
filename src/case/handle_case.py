@@ -10,6 +10,7 @@ class HandleCase(object):
     ##处理Excel表信息的总入口
 
     def __init__(self,excel_path):
+        ##暂时写死路径，后续通过配置文件传入
         excel_path = "D:\\python_demo\\Hamster\\test\\test.xls"
         case_path = "D:\\python_demo\\Hamster\\test\\"
         self.log_path_list = self._init_log_path_list(case_path)
@@ -47,15 +48,21 @@ class HandleCase(object):
         return self.get_current_case().get_case_detail()
 
     def get_current_case_log(self):
-        log_path = self._locate_log_path()
+        if self.get_current_case().get_case_log_path():
+            log_path = self.get_current_case().get_case_log_path()
+        else:
+            log_path = self._locate_log_path()
         if log_path:
             ##待适配为读取文件内容
             log = log_path
-        self.set_current_log(log)
+            self.set_current_log(log)
         return self.get_current_case().get_case_log()
 
     def set_current_log(self,log):
         self.get_current_case().set_case_log(log)
+
+    def set_current_log_path(self,log_path):
+        self.get_current_case().set_case_log_path(log_path)
 
     def _locate_log_path(self):
         ##根据case name 定位 同名的log文件，不区分大小写

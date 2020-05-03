@@ -6,6 +6,7 @@ sys.path.append(os.path.abspath('../config/'))
 print(os.path.abspath('../config/'))
 from config_load import ConfigLoad
 from src.case.handle_case import  HandleCase
+from tkinter import filedialog
 
 class HandleWindows(object):
     ##处理windows窗体函数，目前纸打印窗体，具体功能待添加
@@ -59,7 +60,7 @@ class HandleWindows(object):
         update_button1.place(x = 1000 , y=535)
 
     def _show_import_button(self):
-        update_button2 = tk.Button(self.root_windows,bg = 'whitesmoke',text="Import Logs",width = 15, height = 2,command = self.func_update)
+        update_button2 = tk.Button(self.root_windows,bg = 'whitesmoke',text="Import Logs",width = 15, height = 2,command = self._import_log)
         update_button2.place(x = 710 , y=535)
 
     def _show_export_button(self):
@@ -75,6 +76,7 @@ class HandleWindows(object):
         #py_text.place(x=5,y=5)
 
     def _reflush_case(self,event):
+        ##根据选择的caseName 刷新step，log
         case_index = self.theLB.curselection()
         print(case_index)
         if case_index[0]:
@@ -86,12 +88,21 @@ class HandleWindows(object):
             self.result_text.delete("0.0","end")
 
     def _record_result(self):
+        ##记录用户数输入的result
         context = self.result_text.get("0.0","end")
         self.handle_case.set_current_case_result(context)
         #self.result_text.delete("0.0","end")
 
+    def _import_log(self):
+        ##通过文件管理器导入log文件,指定初始目录
+        log_path = filedialog.askopenfilename(initialdir="D:\\python_demo\\Hamster\\")
+        print(log_path)
+        self.handle_case.set_current_log(log_path)
+        self._show_case_logs()
+
     def _save_excel(self):
         ##目前写死路径，后面改为时间戳形式的路径
+        ##或者用户选择保存在哪里
         self.handle_case.export_case_to_excel("D:\\python_demo\\Hamster\\test\\test2.xls")
 
     def run_windows(self):
@@ -106,6 +117,7 @@ class HandleWindows(object):
         tk.mainloop()
 
     def func_update(self):
+        ##已废弃
         pass
 
 
