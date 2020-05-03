@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import xlrd,xlwt
-from case import Case
+from src.case.case import Case
 
 class CaseLoad(object):
     ##初始化Excel表信息，将其加载到caselist中
 
     def __init__(self,in_case_path):
         self.input_case_path = in_case_path
-        ##一下信息带适配为从配置文件获取
+        ##以下信息带适配为从配置文件获取
         self.sheet_name = "Sheet1"
         self.case_name = "Case_name"
         self.case_step = "Case_step"

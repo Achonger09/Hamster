@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from case import Case
-from case_load import CaseLoad
+from src.case.case import Case
+from src.case.case_load import CaseLoad
 import xlwt
 import os
 
@@ -32,6 +32,10 @@ class HandleCase(object):
                 if name.lower().endswith("log"):
                     log_path_list.append(os.path.join(path,name))
         return log_path_list
+
+    def get_case_names(self):
+        case_names = map(lambda x:x.get_case_name(),self.case_list)
+        return list(case_names)
 
     def get_current_case(self):
         return  self.case_list[self.current_index]
@@ -84,9 +88,18 @@ class HandleCase(object):
         ##下一个case
         self.current_index += 1
 
+    def set_index(self,index):
+        self.current_index = index
+
+    def located_case(self,case_name):
+        for index in range(len(self.case_list)):
+            if self.case_list[index].get_case_name() == case_name:
+                self.current_index = index
+                break
+        print("located failed")
 
     #pass
-
+'''
 if __name__ == '__main__':
     export_path="D:\\python_demo\\Hamster\\test\\test1.xls"
     ha = HandleCase("")
@@ -101,3 +114,4 @@ if __name__ == '__main__':
     ha.set_current_log("log2")
     ha.next()
     ha.export_case_to_excel(export_path)
+'''
