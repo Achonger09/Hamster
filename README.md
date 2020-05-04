@@ -1,4 +1,5 @@
-#### Hamster
+# Hamster
+#### 组件功能：
 HandleWindows负责窗口显示
 
 ConfigLoad类用于读取配置文件信息
