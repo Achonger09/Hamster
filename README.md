@@ -29,4 +29,4 @@ Ctrl+F搜索log中关键字
 
 6.excel目录通过ctrl+n指定目录导入，需要windows_handler适配异常 ---develop分支--完成
 
-  excel导出，指定目录导出  -完成
+7.excel导出，指定目录导出  -完成
