@@ -1,30 +1,21 @@
-# Hamster
-HandleWindows 调用 HandleCase类加载，处理，导出Excel表中信息
+#### Hamster
+HandleWindows负责窗口显示
 
 ConfigLoad类用于读取配置文件信息
 
-HandleFile类 用于处理文件读写，目录遍历，log文件定位，暂不单独实现
+Case,CaseLoad,HandleCase处理Excel表信息
 
-#test文件夹用于测试功能是否正常
+test文件夹用于测试功能是否正常
 
-目前已调试：
+#### 使用方式：
+入口函数 windows_handle
 
-config_load
+Ctrl+n读取Excel表路径
 
-handle_case
+Ctrl+F搜索log中关键字
 
-handle_windows
 
-待补充
-
-handle_file
-
-接口需要优化
-
-主要功能已完成。
-
-待补充功能：
-
+#### 待补充功能：
 1.log导入   -完成
 
 2.log内容显示 -完成
