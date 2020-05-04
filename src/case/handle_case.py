@@ -9,11 +9,11 @@ import os
 class HandleCase(object):
     ##处理Excel表信息的总入口
 
-    def __init__(self,excel_path):
+    def __init__(self,excel_path,cfg):
         ##暂时写死路径，后续通过配置文件传入
         #excel_path = "D:\\python_demo\\Hamster\\test\\test.xls"
         #log path从配置文件读取
-        case_path = "D:\\python_demo\\Hamster\\test\\"
+        case_path = cfg.get("path","log_path")
         self.log_path_list = self._init_log_path_list(case_path)
         print(self.log_path_list)
         self.current_index = 0
@@ -55,7 +55,7 @@ class HandleCase(object):
             log_path = self._locate_log_path()
         if log_path:
             ##待适配为读取文件内容
-            with open(log_path,'r') as f:
+            with open(log_path,'r',encoding='utf-8') as f:
                 log = f.read()
             #log = log_path
             self.set_current_log(log)
@@ -108,20 +108,3 @@ class HandleCase(object):
                 break
         print("located failed")
 
-    #pass
-'''
-if __name__ == '__main__':
-    export_path="D:\\python_demo\\Hamster\\test\\test1.xls"
-    ha = HandleCase("")
-    print("0:{}".format(ha.get_current_case()))
-    ha.set_current_case_result("True")
-    ha.get_current_case_log()
-    #ha.g
-    print("0.1:{}".format(ha.get_current_case()))
-    ha.next()
-    print("1:{}".format(ha.get_current_case()))
-    ha.set_current_case_result("False")
-    ha.set_current_log("log2")
-    ha.next()
-    ha.export_case_to_excel(export_path)
-'''

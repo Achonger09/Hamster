@@ -23,9 +23,3 @@ class ConfigLoad(object):
     def options(self,session):
         return self.conf.items(session)
 
-'''
-if __name__ == '__main__':
-    config = ConfigLoad()
-    size = config.get("windows","size")
-    print(size)
-'''

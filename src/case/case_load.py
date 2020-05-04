@@ -45,24 +45,4 @@ class CaseLoad(object):
                 name_col = col
                 break
         return name_col
-    '''
-    def export_excel(self,output_case_path,case_list):
-        new_case_list = list()
-        new_case_list.append([self.case_name,self.case_step,self.case_log,self.case_result])
-        for case in case_list:
-            new_case_list.append([case.get_case_name(),case.get_case_detail(),
-                                 case.get_case_log_path(),case.get_case_result()])
-        myWorkbook = xlwt.Workbook()
-        mySheet = myWorkbook.add_sheet('text_excel')
-        for i in range(len(new_case_list)):
-            for j in range(len(new_case_list[i])):
-                mySheet.write(i,j,new_case_list[i][j])
-        myWorkbook.save(output_case_path)
-    #pass
 
-if __name__ == '__main__':
-    cl = CaseLoad("D:\\python_demo\\Hamster\\test\\test.xls")
-    re = cl.case_load()
-    #print(re)
-    cl.export_excel("D:\\python_demo\\Hamster\\test\\test1.xls",re)
-    '''
