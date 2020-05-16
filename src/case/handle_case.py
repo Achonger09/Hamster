@@ -1,19 +1,20 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from src.case.case import Case
-from src.case.case_load import CaseLoad
+from case import Case
+from case_load import CaseLoad
 import xlwt
 import os
 
 class HandleCase(object):
     ##处理Excel表信息的总入口
 
-    def __init__(self,excel_path,cfg):
+    def __init__(self,excel_path):
         ##暂时写死路径，后续通过配置文件传入
         #excel_path = "D:\\python_demo\\Hamster\\test\\test.xls"
         #log path从配置文件读取
-        case_path = cfg.get("path","log_path")
+        #case_path = cfg.get("path","log_path")
+        case_path = ''
         self.log_path_list = self._init_log_path_list(case_path)
         print(self.log_path_list)
         self.current_index = 0

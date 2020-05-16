@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 import xlrd,xlwt
-from src.case.case import Case
+from case import Case
 
 class CaseLoad(object):
     ##初始化Excel表信息，将其加载到caselist中
