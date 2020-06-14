@@ -1,0 +1,996 @@
+     ┌────────────────────────────────────────────────────────────────────┐
+     │                        • MobaXterm 11.0 •                          │
+     │            (SSH client, X-server and networking tools)             │
+     │                                                                    │
+     │ ➤ SSH session to zyc@192.168.31.211                                │
+     │   • SSH compression : ✔                                            │
+     │   • SSH-browser     : ✔                                            │
+     │   • X11-forwarding  : ✔  (remote display is forwarded through SSH) │
+     │   • DISPLAY         : ✔  (automatically set on remote server)      │
+     │                                                                    │
+     │ ➤ For more info, ctrl+click on help or visit our website           │
+     └────────────────────────────────────────────────────────────────────┘
+
+Welcome to Ubuntu 18.04.4 LTS (GNU/Linux 5.3.0-28-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/advantage
+
+
+ * Canonical Livepatch is available for installation.
+   - Reduce system reboots and improve kernel security. Activate at:
+     https://ubuntu.com/livepatch
+
+170 packages can be updated.
+126 updates are security updates.
+
+Your Hardware Enablement Stack (HWE) is supported until April 2023.
+Last login: Wed May 13 21:12:44 2020 from 192.168.31.176
+zyc@zyc-X450CC:~$
+zyc@zyc-X450CC:~$
+zyc@zyc-X450CC:~$
+zyc@zyc-X450CC:~$ vim /proc/
+Display all 220 possibilities? (y or n)
+zyc@zyc-X450CC:~$ vim /proc/
+Display all 220 possibilities? (y or n)
+1/                 148/               1697               249/               30/                40/                563/               945/               interrupts         partitions
+10/                149/               1698               25/                300/               41/                568/               972/               iomem              pressure/
+1008/              15/                17/                250/               31/                42/                569/               974/               ioports            sched_debug
+11/                150/               18/                251/               32/                436/               598/               976/               irq/               schedstat
+12/                1521/              188/               252/               321/               437/               6/                 994/               kallsyms           scsi/
+13/                1522/              189/               253/               33/                44/                605/               acpi/              kcore              self/
+1319/              1523/              19/                254/               34/                48/                607/               asound/            keys               slabinfo
+1321/              1524/              190/               255/               35/                5/                 633/               buddyinfo          key-users          softirqs
+1322/              153/               2/                 256/               352/               503/               657/               bus/               kmsg               stat
+1323/              154/               20/                257/               356/               519/               7/                 cgroups            kpagecgroup        swaps
+135/               155/               21/                258/               357/               523/               759/               cmdline            kpagecount         sys/
+136/               1558/              22/                259/               359/               526/               760/               consoles           kpageflags         sysrq-trigger
+137/               156/               223/               26/                36/                528/               763/               cpuinfo            loadavg            sysvipc/
+138/               157/               23/                260/               361/               529/               767/               crypto             locks              thread-self/
+139/               158/               24/                263/               366/               530/               781/               devices            mdstat             timer_list
+14/                16/                241/               27/                367/               533/               782/               diskstats          meminfo            tty/
+140/               1644/              243/               28/                37/                537/               799/               dma                misc               uptime
+141/               169/               244/               284/               370/               538/               8/                 driver/            modules            version
+142/               1692               245/               286/               372/               539/               821/               execdomains        mounts             version_signature
+143/               1693               246/               287/               38/                540/               846/               fb                 mtrr               vmallocinfo
+144/               1694               247/               29/                39/                541/               9/                 filesystems        net/               vmstat
+145/               1696               248/               3/                 4/                 562/               935/               fs/                pagetypeinfo       zoneinfo
+zyc@zyc-X450CC:~$ vim /proc/cpuinfo
+
+Command 'vim' not found, but can be installed with:
+
+sudo apt install vim
+sudo apt install vim-gtk3
+sudo apt install vim-tiny
+sudo apt install neovim
+sudo apt install vim-athena
+sudo apt install vim-gtk
+sudo apt install vim-nox
+
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+[sudo] zyc 的密码：
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ ps -ef | grep apt
+root       994     1  0 05:14 ?        00:00:00 /bin/sh /usr/lib/apt/apt.systemd.daily update
+root      1008   994  0 05:14 ?        00:00:00 /bin/sh /usr/lib/apt/apt.systemd.daily lock_is_held update
+zyc       1729  1524  0 05:16 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ kill 994
+-bash: kill: (994) - 不允许的操作
+zyc@zyc-X450CC:~$ sudo kill 994
+zyc@zyc-X450CC:~$ kill 994
+-bash: kill: (994) - 没有那个进程
+zyc@zyc-X450CC:~$ ps -ef | grep apt
+zyc       1736  1524  0 05:17 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ ps -ef | grep apt
+zyc       1738  1524  0 05:17 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ ps -ef | grep apt
+zyc       1770  1524  0 05:18 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ sudo ps -ef | grep apt
+root      1771     1  0 05:18 ?        00:00:00 /bin/sh /usr/lib/apt/apt.systemd.daily install
+root      1775  1771  0 05:18 ?        00:00:00 /bin/sh /usr/lib/apt/apt.systemd.daily lock_is_held install
+zyc       1810  1524  0 05:18 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ sudo kill 1771
+zyc@zyc-X450CC:~$ sudo kill 1775
+zyc@zyc-X450CC:~$ sudo ps -ef | grep apt
+zyc       1817  1524  0 05:18 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ sudo ps -ef | grep apt
+zyc       1820  1524  0 05:18 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo ps -ef | grep apt
+zyc       1832  1524  0 05:19 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ sudo ps -ef | grep apt
+zyc       1835  1524  0 05:19 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ sudo ps -ef | grep apt
+zyc       1838  1524  0 05:19 pts/0    00:00:00 grep --color=auto apt
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock-frontend - open (11: 资源暂时不可用)
+E: 无法获取 dpkg 前端锁 (/var/lib/dpkg/lock-frontend)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo rm /var/lib/dpkg/lock-frontend
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+E: 无法获得锁 /var/lib/dpkg/lock - open (11: 资源暂时不可用)
+E: 无法锁定管理目录(/var/lib/dpkg/)，是否有其他进程正占用它？
+zyc@zyc-X450CC:~$ sudo rm /var/lib/dpkg/lock
+zyc@zyc-X450CC:~$ sudo apt-get install vim
+正在读取软件包列表... 完成
+正在分析软件包的依赖关系树
+正在读取状态信息... 完成
+下列软件包是自动安装的并且现在不需要了：
+  fonts-liberation2 fonts-opensymbol gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 gir1.2-gudev-1.0 gir1.2-udisks-2.0 grilo-plugins-0.3-base gstreamer1.0-gtk3 libboost-date-time1.65.1
+  libboost-filesystem1.65.1 libboost-iostreams1.65.1 libboost-locale1.65.1 libcdr-0.1-1 libclucene-contribs1v5 libclucene-core1v5 libcmis-0.5-5v5 libcolamd2 libdazzle-1.0-0 libe-book-0.1-1
+  libedataserverui-1.2-2 libeot0 libepubgen-0.1-1 libetonyek-0.1-1 libevent-2.1-6 libexiv2-14 libfreerdp-client2-2 libfreerdp2-2 libgc1c2 libgee-0.8-2 libgexiv2-2 libgom-1.0-0 libgpgmepp6 libgpod-common
+  libgpod4 liblangtag-common liblangtag1 liblirc-client0 liblua5.3-0 libmediaart-2.0-0 libmspub-0.1-1 libodfgen-0.1-1 libqqwing2v5 libraw16 librevenge-0.0-0 libsgutils2-2 libssh-4 libsuitesparseconfig5
+  libvncclient1 libwinpr2-2 libxapian30 libxmlsec1 libxmlsec1-nss lp-solve media-player-info python3-mako python3-markupsafe syslinux syslinux-common syslinux-legacy usb-creator-common
+使用'sudo apt autoremove'来卸载它(它们)。
+将会同时安装下列软件：
+  vim-common vim-runtime vim-tiny
+建议安装：
+  ctags vim-doc vim-scripts indent
+下列【新】软件包将被安装：
+  vim vim-runtime
+下列软件包将被升级：
+  vim-common vim-tiny
+升级了 2 个软件包，新安装了 2 个软件包，要卸载 0 个软件包，有 175 个软件包未被升级。
+需要下载 7,135 kB 的归档。
+解压缩后会消耗 32.0 MB 的额外空间。
+您希望继续执行吗？ [Y/n] y
+获取:1 http://cn.archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim-tiny amd64 2:8.0.1453-1ubuntu1.3 [476 kB]
+获取:2 http://cn.archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim-common all 2:8.0.1453-1ubuntu1.3 [70.6 kB]
+获取:3 http://cn.archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim-runtime all 2:8.0.1453-1ubuntu1.3 [5,436 kB]
+获取:4 http://cn.archive.ubuntu.com/ubuntu bionic-updates/main amd64 vim amd64 2:8.0.1453-1ubuntu1.3 [1,153 kB]
+已下载 7,135 kB，耗时 1分 36秒 (74.0 kB/s)
+(正在读取数据库 ... 系统当前共安装有 118698 个文件和目录。)
+正准备解包 .../vim-tiny_2%3a8.0.1453-1ubuntu1.3_amd64.deb  ...
+正在将 vim-tiny (2:8.0.1453-1ubuntu1.3) 解包到 (2:8.0.1453-1ubuntu1.1) 上 ...
+正准备解包 .../vim-common_2%3a8.0.1453-1ubuntu1.3_all.deb  ...
+正在将 vim-common (2:8.0.1453-1ubuntu1.3) 解包到 (2:8.0.1453-1ubuntu1.1) 上 ...
+正在选中未选择的软件包 vim-runtime。
+正准备解包 .../vim-runtime_2%3a8.0.1453-1ubuntu1.3_all.deb  ...
+正在添加 vim-runtime 导致 /usr/share/vim/vim80/doc/help.txt 转移到 /usr/share/vim/vim80/doc/help.txt.vim-tiny
+正在添加 vim-runtime 导致 /usr/share/vim/vim80/doc/tags 转移到 /usr/share/vim/vim80/doc/tags.vim-tiny
+正在解包 vim-runtime (2:8.0.1453-1ubuntu1.3) ...
+正在选中未选择的软件包 vim。
+正准备解包 .../vim_2%3a8.0.1453-1ubuntu1.3_amd64.deb  ...
+正在解包 vim (2:8.0.1453-1ubuntu1.3) ...
+正在设置 vim-common (2:8.0.1453-1ubuntu1.3) ...
+正在设置 vim-runtime (2:8.0.1453-1ubuntu1.3) ...
+正在设置 vim-tiny (2:8.0.1453-1ubuntu1.3) ...
+正在设置 vim (2:8.0.1453-1ubuntu1.3) ...
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/vim (vim)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/vimdiff (vimdiff)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/rvim (rvim)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/rview (rview)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/vi (vi)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/view (view)
+update-alternatives: 使用 /usr/bin/vim.basic 来在自动模式中提供 /usr/bin/ex (ex)
+正在处理用于 gnome-menus (3.13.3-11ubuntu1.1) 的触发器 ...
+正在处理用于 hicolor-icon-theme (0.17-2) 的触发器 ...
+正在处理用于 mime-support (3.60ubuntu1) 的触发器 ...
+正在处理用于 desktop-file-utils (0.23-1ubuntu3.18.04.2) 的触发器 ...
+正在处理用于 man-db (2.8.3-2ubuntu0.1) 的触发器 ...
+zyc@zyc-X450CC:~$ sudo vim /proc/cpuinfo
+zyc@zyc-X450CC:~$ ll
+总用量 84
+drwxr-xr-x 14 zyc  zyc  4096 5月  16 05:23 ./
+drwxr-xr-x  3 root root 4096 5月  11 23:50 ../
+-rw-------  1 zyc  zyc   789 5月  13 22:41 .bash_history
+-rw-r--r--  1 zyc  zyc   220 5月  11 23:50 .bash_logout
+-rw-r--r--  1 zyc  zyc  3771 5月  11 23:50 .bashrc
+drwx------ 12 zyc  zyc  4096 5月  13 20:08 .cache/
+drwx------ 12 zyc  zyc  4096 5月  13 19:28 .config/
+drwx------  3 zyc  zyc  4096 5月  13 07:14 .gnupg/
+-rw-------  1 zyc  zyc   668 5月  13 19:36 .ICEauthority
+drwx------  3 zyc  zyc  4096 5月  13 07:14 .local/
+-rw-r--r--  1 zyc  zyc   807 5月  11 23:50 .profile
+-rw-r--r--  1 zyc  zyc     0 5月  13 19:33 .sudo_as_admin_successful
+-rw-------  1 root root  814 5月  16 05:23 .viminfo
+-rw-------  1 zyc  zyc    56 5月  16 05:14 .Xauthority
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 公共的/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 模板/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 视频/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 图片/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 文档/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 下载/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 音乐/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 桌面/
+zyc@zyc-X450CC:~$ cd /
+zyc@zyc-X450CC:/$ ll
+总用量 2097264
+drwxr-xr-x  24 root root       4096 5月  12 01:09 ./
+drwxr-xr-x  24 root root       4096 5月  12 01:09 ../
+drwxr-xr-x   2 root root       4096 5月  13 20:10 bin/
+drwxr-xr-x   3 root root       4096 5月  12 01:16 boot/
+drwxrwxr-x   2 root root       4096 5月  11 21:35 cdrom/
+drwxr-xr-x  20 root root       4380 5月  16 05:14 dev/
+drwxr-xr-x 121 root root      12288 5月  16 05:22 etc/
+drwxr-xr-x   3 root root       4096 5月  11 23:50 home/
+lrwxrwxrwx   1 root root         32 5月  12 01:09 initrd.img -> boot/initrd.img-5.3.0-28-generic
+lrwxrwxrwx   1 root root         32 5月  11 21:33 initrd.img.old -> boot/initrd.img-5.3.0-28-generic
+drwxr-xr-x  21 root root       4096 5月  12 01:13 lib/
+drwxr-xr-x   2 root root       4096 2月   4 02:22 lib64/
+drwx------   2 root root      16384 5月  11 21:32 lost+found/
+drwxr-xr-x   2 root root       4096 2月   4 02:22 media/
+drwxr-xr-x   2 root root       4096 2月   4 02:22 mnt/
+drwxr-xr-x   2 root root       4096 2月   4 02:22 opt/
+dr-xr-xr-x 151 root root          0 5月  16 05:14 proc/
+drwx------   3 root root       4096 2月   4 02:28 root/
+drwxr-xr-x  25 root root        840 5月  16 05:19 run/
+drwxr-xr-x   2 root root      12288 5月  13 20:10 sbin/
+drwxr-xr-x  11 root root       4096 5月  13 07:17 snap/
+drwxr-xr-x   2 root root       4096 2月   4 02:22 srv/
+-rw-------   1 root root 2147483648 5月  11 21:33 swapfile
+dr-xr-xr-x  13 root root          0 5月  16 05:14 sys/
+drwxrwxrwt  10 root root       4096 5月  16 05:22 tmp/
+drwxr-xr-x  11 root root       4096 2月   4 02:25 usr/
+drwxr-xr-x  14 root root       4096 2月   4 02:30 var/
+lrwxrwxrwx   1 root root         29 5月  12 01:09 vmlinuz -> boot/vmlinuz-5.3.0-28-generic
+zyc@zyc-X450CC:/$ cd /home/
+zyc@zyc-X450CC:/home$ ll
+总用量 12
+drwxr-xr-x  3 root root 4096 5月  11 23:50 ./
+drwxr-xr-x 24 root root 4096 5月  12 01:09 ../
+drwxr-xr-x 14 zyc  zyc  4096 5月  16 05:23 zyc/
+zyc@zyc-X450CC:/home$ cd zyc/
+zyc@zyc-X450CC:~$ pwd
+/home/zyc
+zyc@zyc-X450CC:~$ ll
+总用量 84
+drwxr-xr-x 14 zyc  zyc  4096 5月  16 05:23 ./
+drwxr-xr-x  3 root root 4096 5月  11 23:50 ../
+-rw-------  1 zyc  zyc   789 5月  13 22:41 .bash_history
+-rw-r--r--  1 zyc  zyc   220 5月  11 23:50 .bash_logout
+-rw-r--r--  1 zyc  zyc  3771 5月  11 23:50 .bashrc
+drwx------ 12 zyc  zyc  4096 5月  13 20:08 .cache/
+drwx------ 12 zyc  zyc  4096 5月  13 19:28 .config/
+drwx------  3 zyc  zyc  4096 5月  13 07:14 .gnupg/
+-rw-------  1 zyc  zyc   668 5月  13 19:36 .ICEauthority
+drwx------  3 zyc  zyc  4096 5月  13 07:14 .local/
+-rw-r--r--  1 zyc  zyc   807 5月  11 23:50 .profile
+-rw-r--r--  1 zyc  zyc     0 5月  13 19:33 .sudo_as_admin_successful
+-rw-------  1 root root  814 5月  16 05:23 .viminfo
+-rw-------  1 zyc  zyc    56 5月  16 05:14 .Xauthority
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 公共的/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 模板/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 视频/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 图片/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 文档/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 下载/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 音乐/
+drwxr-xr-x  2 zyc  zyc  4096 5月  13 07:15 桌面/
+zyc@zyc-X450CC:~$ df -hl
+文件系统        容量  已用  可用 已用% 挂载点
+udev            1.9G     0  1.9G    0% /dev
+tmpfs           383M  1.3M  381M    1% /run
+/dev/sda1       687G  6.4G  646G    1% /
+tmpfs           1.9G     0  1.9G    0% /dev/shm
+tmpfs           5.0M  4.0K  5.0M    1% /run/lock
+tmpfs           1.9G     0  1.9G    0% /sys/fs/cgroup
+/dev/loop0      161M  161M     0  100% /snap/gnome-3-28-1804/116
+/dev/loop6      1.0M  1.0M     0  100% /snap/gnome-logs/81
+/dev/loop2      4.3M  4.3M     0  100% /snap/gnome-calculator/544
+/dev/loop5      3.8M  3.8M     0  100% /snap/gnome-system-monitor/127
+/dev/loop3       90M   90M     0  100% /snap/core/8268
+/dev/loop1       15M   15M     0  100% /snap/gnome-characters/399
+/dev/loop4       45M   45M     0  100% /snap/gtk-common-themes/1440
+/dev/loop7       55M   55M     0  100% /snap/core18/1668
+tmpfs           383M     0  383M    0% /run/user/1000
+zyc@zyc-X450CC:~$ mkdir /k8s
+mkdir: 无法创建目录"/k8s": 权限不够
+zyc@zyc-X450CC:~$ sudo mkdir /k8s
+zyc@zyc-X450CC:~$ cd /k8s/
+zyc@zyc-X450CC:/k8s$ ll
+总用量 8
+drwxr-xr-x  2 root root 4096 5月  16 05:27 ./
+drwxr-xr-x 25 root root 4096 5月  16 05:27 ../
+zyc@zyc-X450CC:/k8s$ mkdir minikube
+mkdir: 无法创建目录"minikube": 权限不够
+zyc@zyc-X450CC:/k8s$ sudo mkdir minikube
+zyc@zyc-X450CC:/k8s$ cd minikube/
+zyc@zyc-X450CC:/k8s/minikube$
+zyc@zyc-X450CC:/k8s/minikube$
+zyc@zyc-X450CC:/k8s/minikube$ curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
+
+Command 'curl' not found, but can be installed with:
+
+sudo apt install curl
+
+zyc@zyc-X450CC:/k8s/minikube$ sudo apt install curl
+正在读取软件包列表... 完成
+正在分析软件包的依赖关系树
+正在读取状态信息... 完成
+下列软件包是自动安装的并且现在不需要了：
+  fonts-liberation2 fonts-opensymbol gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 gir1.2-gudev-1.0 gir1.2-udisks-2.0 grilo-plugins-0.3-base gstreamer1.0-gtk3 libboost-date-time1.65.1
+  libboost-filesystem1.65.1 libboost-iostreams1.65.1 libboost-locale1.65.1 libcdr-0.1-1 libclucene-contribs1v5 libclucene-core1v5 libcmis-0.5-5v5 libcolamd2 libdazzle-1.0-0 libe-book-0.1-1
+  libedataserverui-1.2-2 libeot0 libepubgen-0.1-1 libetonyek-0.1-1 libevent-2.1-6 libexiv2-14 libfreerdp-client2-2 libfreerdp2-2 libgc1c2 libgee-0.8-2 libgexiv2-2 libgom-1.0-0 libgpgmepp6 libgpod-common
+  libgpod4 liblangtag-common liblangtag1 liblirc-client0 liblua5.3-0 libmediaart-2.0-0 libmspub-0.1-1 libodfgen-0.1-1 libqqwing2v5 libraw16 librevenge-0.0-0 libsgutils2-2 libssh-4 libsuitesparseconfig5
+  libvncclient1 libwinpr2-2 libxapian30 libxmlsec1 libxmlsec1-nss lp-solve media-player-info python3-mako python3-markupsafe syslinux syslinux-common syslinux-legacy usb-creator-common
+使用'sudo apt autoremove'来卸载它(它们)。
+将会同时安装下列软件：
+  libcurl4
+下列【新】软件包将被安装：
+  curl libcurl4
+升级了 0 个软件包，新安装了 2 个软件包，要卸载 0 个软件包，有 175 个软件包未被升级。
+需要下载 373 kB 的归档。
+解压缩后会消耗 1,038 kB 的额外空间。
+您希望继续执行吗？ [Y/n] y
+获取:1 http://cn.archive.ubuntu.com/ubuntu bionic-updates/main amd64 libcurl4 amd64 7.58.0-2ubuntu3.8 [214 kB]
+获取:2 http://cn.archive.ubuntu.com/ubuntu bionic-updates/main amd64 curl amd64 7.58.0-2ubuntu3.8 [159 kB]
+已下载 373 kB，耗时 3秒 (125 kB/s)
+正在选中未选择的软件包 libcurl4:amd64。
+(正在读取数据库 ... 系统当前共安装有 120465 个文件和目录。)
+正准备解包 .../libcurl4_7.58.0-2ubuntu3.8_amd64.deb  ...
+正在解包 libcurl4:amd64 (7.58.0-2ubuntu3.8) ...
+正在选中未选择的软件包 curl。
+正准备解包 .../curl_7.58.0-2ubuntu3.8_amd64.deb  ...
+正在解包 curl (7.58.0-2ubuntu3.8) ...
+正在设置 libcurl4:amd64 (7.58.0-2ubuntu3.8) ...
+正在设置 curl (7.58.0-2ubuntu3.8) ...
+正在处理用于 man-db (2.8.3-2ubuntu0.1) 的触发器 ...
+正在处理用于 libc-bin (2.27-3ubuntu1) 的触发器 ...
+zyc@zyc-X450CC:/k8s/minikube$ curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:--  0:00:04 --:--:--     0Warning: Failed to create the file kubectl: 权限不够
+  0 67.4M    0  1369    0     0    315      0 62:20:59  0:00:04 62:20:55   315
+curl: (23) Failed writing body (0 != 1369)
+zyc@zyc-X450CC:/k8s/minikube$ sudo curl -Lo kubectl https://storage.googleapis.com/kubernetes-release/release/v1.6.4/bin/linux/amd64/kubectl
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 67.4M  100 67.4M    0     0  3523k      0  0:00:19  0:00:19 --:--:-- 4006k
+zyc@zyc-X450CC:/k8s/minikube$ ll
+总用量 69056
+drwxr-xr-x 2 root root     4096 5月  16 05:28 ./
+drwxr-xr-x 3 root root     4096 5月  16 05:27 ../
+-rw-r--r-- 1 root root 70704763 5月  16 05:29 kubectl
+zyc@zyc-X450CC:/k8s/minikube$ install kubectl
+install: 在'kubectl' 后缺少了要操作的目标文件
+Try 'install --help' for more information.
+zyc@zyc-X450CC:/k8s/minikube$ sudo install minikube
+install: 在'minikube' 后缺少了要操作的目标文件
+Try 'install --help' for more information.
+zyc@zyc-X450CC:/k8s/minikube$ chmod +x minikube && sudo mv minikube /usr/local/bin/
+chmod: 无法访问'minikube': 没有那个文件或目录
+zyc@zyc-X450CC:/k8s/minikube$ ll
+总用量 69056
+drwxr-xr-x 2 root root     4096 5月  16 05:28 ./
+drwxr-xr-x 3 root root     4096 5月  16 05:27 ../
+-rw-r--r-- 1 root root 70704763 5月  16 05:29 kubectl
+zyc@zyc-X450CC:/k8s/minikube$ ll
+总用量 69056
+drwxr-xr-x 2 root root     4096 5月  16 05:28 ./
+drwxr-xr-x 3 root root     4096 5月  16 05:27 ../
+-rw-r--r-- 1 root root 70704763 5月  16 05:29 kubectl
+zyc@zyc-X450CC:/k8s/minikube$ curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.7.1/minikube-linux-amd64 && sudo chmod +x minikube && sudo mv minikube /usr/local/bin/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0Warning: Failed to create the file minikube: 权限不够
+  0 72.0M    0  1369    0     0    959      0 21:53:42  0:00:01 21:53:41   958
+curl: (23) Failed writing body (0 != 1369)
+zyc@zyc-X450CC:/k8s/minikube$ sudo curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.7.1/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100 72.0M  100 72.0M    0     0  3716k      0  0:00:19  0:00:19 --:--:-- 4579k
+chmod: 更改'minikube' 的权限: 不允许的操作
+zyc@zyc-X450CC:/k8s/minikube$ sudo chmod +x minikube
+zyc@zyc-X450CC:/k8s/minikube$ sudo mv minikube /usr/local/bin/
+zyc@zyc-X450CC:/k8s/minikube$ start minikube
+
+Command 'start' not found, did you mean:
+
+  command 'kstart' from deb kde-runtime
+  command 'rstart' from deb x11-session-utils
+  command 'tart' from deb tart
+  command 'smart' from deb smartpm-core
+  command 'startx' from deb xinit
+  command 'stat' from deb coreutils
+
+Try: sudo apt install <deb name>
+
+zyc@zyc-X450CC:/k8s/minikube$ minikube start
+E0516 05:36:33.658499    3655 notify.go:54] Get https://storage.googleapis.com/minikube/releases.json: net/http: TLS handshake timeout
+Starting local Kubernetes cluster...
+E0516 05:38:03.662785    3655 start.go:78] Error starting host:  Get https://storage.googleapis.com/minikube/minikube-0.5.iso: dial tcp 172.217.160.80:443: i/o timeout
+zyc@zyc-X450CC:/k8s/minikube$ minikube start --image-mirror-country cn ^Ciso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.9.0.iso
+zyc@zyc-X450CC:/k8s/minikube$ minikube --version
+Error: unknown flag: --version
+Usage:
+  minikube [command]
+
+Available Commands:
+  dashboard        Opens/displays the kubernetes dashboard URL for your local cluster
+  delete           Deletes a local kubernetes cluster.
+  docker-env       sets up docker env variables; similar to '$(docker-machine env)'
+  get-k8s-versions Gets the list of available kubernetes versions available for minikube.
+  ip               Retrieve the IP address of the running cluster.
+  logs             Gets the logs of the running localkube instance, used for debugging minikube, not user code.
+  service          Gets the kubernetes URL for the specified service in your local cluster
+  ssh              Log into or run a command on a machine with SSH; similar to 'docker-machine ssh'
+  start            Starts a local kubernetes cluster.
+  status           Gets the status of a local kubernetes cluster.
+  stop             Stops a running local kubernetes cluster.
+  version          Print the version of minikube.
+
+Flags:
+      --alsologtostderr[=false]: log to standard error as well as files
+      --log-flush-frequency=5s: Maximum number of seconds between log flushes
+      --log_backtrace_at=:0: when logging hits line file:N, emit a stack trace
+      --log_dir="": If non-empty, write log files in this directory
+      --logtostderr[=false]: log to standard error instead of files
+      --show-libmachine-logs[=false]: Whether or not to show logs from libmachine.
+      --stderrthreshold=2: logs at or above this threshold go to stderr
+      --v=0: log level for V logs
+      --vmodule=: comma-separated list of pattern=N settings for file-filtered logging
+
+Use "minikube [command] --help" for more information about a command.
+
+F0516 05:41:41.697598    3670 root.go:71] unknown flag: --version
+zyc@zyc-X450CC:/k8s/minikube$ minikube version
+minikube version: v0.7.1
+zyc@zyc-X450CC:/k8s/minikube$ curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.9.2/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   631  100   631    0     0    731      0 --:--:-- --:--:-- --:--:--   730
+  0 52.1M    0     0    0     0      0      0 --:--:--  0:00:02 --:--:--     0Warning: Failed to create the file minikube: 权限不够
+  0 52.1M    0 16360    0     0   6879      0  2:12:22  0:00:02  2:12:20 13771
+curl: (23) Failed writing body (0 != 16360)
+zyc@zyc-X450CC:/k8s/minikube$ sudo curl -Lo minikube https://github.com/kubernetes/minikube/releases/download/v1.9.2/minikube-linux-amd64 && sudo chmod +x minikube && sudo mv minikube /usr/local/bin/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   631  100   631    0     0   1427      0 --:--:-- --:--:-- --:--:--  1424
+ 36 52.1M   36 18.9M    0     0  22877      0  0:39:48  0:14:27  0:25:21 10852^C
+zyc@zyc-X450CC:/k8s/minikube$ ll
+总用量 88436
+drwxr-xr-x 2 root root     4096 5月  16 05:42 ./
+drwxr-xr-x 3 root root     4096 5月  16 05:27 ../
+-rw-r--r-- 1 root root 70704763 5月  16 05:29 kubectl
+-rw-r--r-- 1 root root 19841024 5月  16 05:56 minikube
+zyc@zyc-X450CC:/k8s/minikube$ rm minikube
+rm：是否删除有写保护的普通文件 'minikube'？ y
+rm: 无法删除'minikube': 权限不够
+zyc@zyc-X450CC:/k8s/minikube$ sudo rm minikube
+zyc@zyc-X450CC:/k8s/minikube$ ll
+总用量 69056
+drwxr-xr-x 2 root root     4096 5月  16 05:57 ./
+drwxr-xr-x 3 root root     4096 5月  16 05:27 ../
+-rw-r--r-- 1 root root 70704763 5月  16 05:29 kubectl
+zyc@zyc-X450CC:/k8s/minikube$ scp root@121.40.17.93:/usr/local/bin/minikube ./
+The authenticity of host '121.40.17.93 (121.40.17.93)' can't be established.
+ECDSA key fingerprint is SHA256:p2+py9pcYjc6QwGIK6JgivfN8N1pr8ndDfayHbYLtkc.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '121.40.17.93' (ECDSA) to the list of known hosts.
+root@121.40.17.93's password:
+.//minikube: Permission denied
+zyc@zyc-X450CC:/k8s/minikube$ sudo scp root@121.40.17.93:/usr/local/bin/minikube ./
+The authenticity of host '121.40.17.93 (121.40.17.93)' can't be established.
+ECDSA key fingerprint is SHA256:p2+py9pcYjc6QwGIK6JgivfN8N1pr8ndDfayHbYLtkc.
+Are you sure you want to continue connecting (yes/no)? yes
+Warning: Permanently added '121.40.17.93' (ECDSA) to the list of known hosts.
+root@121.40.17.93's password:
+minikube                                                                                                                                                                     100%   52MB 131.4KB/s   06:46
+zyc@zyc-X450CC:/k8s/minikube$  sudo chmod +x minikube && sudo mv minikube /usr/local/bin/
+zyc@zyc-X450CC:/k8s/minikube$ ll
+总用量 69056
+drwxr-xr-x 2 root root     4096 5月  16 06:05 ./
+drwxr-xr-x 3 root root     4096 5月  16 05:27 ../
+-rw-r--r-- 1 root root 70704763 5月  16 05:29 kubectl
+zyc@zyc-X450CC:/k8s/minikube$ cp /usr/local/bin/minikube ./
+cp: 无法创建普通文件'./minikube': 权限不够
+zyc@zyc-X450CC:/k8s/minikube$ sudo cp /usr/local/bin/minikube ./
+zyc@zyc-X450CC:/k8s/minikube$ ll
+总用量 122416
+drwxr-xr-x 2 root root     4096 5月  16 06:05 ./
+drwxr-xr-x 3 root root     4096 5月  16 05:27 ../
+-rw-r--r-- 1 root root 70704763 5月  16 05:29 kubectl
+-rwxr-xr-x 1 root root 54639377 5月  16 06:05 minikube*
+zyc@zyc-X450CC:/k8s/minikube$ sudo apt-get install docker
+正在读取软件包列表... 完成
+正在分析软件包的依赖关系树
+正在读取状态信息... 完成
+下列软件包是自动安装的并且现在不需要了：
+  fonts-liberation2 fonts-opensymbol gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 gir1.2-gudev-1.0 gir1.2-udisks-2.0 grilo-plugins-0.3-base gstreamer1.0-gtk3 libboost-date-time1.65.1
+  libboost-filesystem1.65.1 libboost-iostreams1.65.1 libboost-locale1.65.1 libcdr-0.1-1 libclucene-contribs1v5 libclucene-core1v5 libcmis-0.5-5v5 libcolamd2 libdazzle-1.0-0 libe-book-0.1-1
+  libedataserverui-1.2-2 libeot0 libepubgen-0.1-1 libetonyek-0.1-1 libevent-2.1-6 libexiv2-14 libfreerdp-client2-2 libfreerdp2-2 libgc1c2 libgee-0.8-2 libgexiv2-2 libgom-1.0-0 libgpgmepp6 libgpod-common
+  libgpod4 liblangtag-common liblangtag1 liblirc-client0 liblua5.3-0 libmediaart-2.0-0 libmspub-0.1-1 libodfgen-0.1-1 libqqwing2v5 libraw16 librevenge-0.0-0 libsgutils2-2 libssh-4 libsuitesparseconfig5
+  libvncclient1 libwinpr2-2 libxapian30 libxmlsec1 libxmlsec1-nss lp-solve media-player-info python3-mako python3-markupsafe syslinux syslinux-common syslinux-legacy usb-creator-common
+使用'sudo apt autoremove'来卸载它(它们)。
+下列【新】软件包将被安装：
+  docker
+升级了 0 个软件包，新安装了 1 个软件包，要卸载 0 个软件包，有 63 个软件包未被升级。
+需要下载 12.9 kB 的归档。
+解压缩后会消耗 45.1 kB 的额外空间。
+获取:1 http://cn.archive.ubuntu.com/ubuntu bionic/universe amd64 docker amd64 1.5-1build1 [12.9 kB]
+已下载 12.9 kB，耗时 6秒 (2,147 B/s)
+正在选中未选择的软件包 docker。
+(正在读取数据库 ... 系统当前共安装有 156823 个文件和目录。)
+正准备解包 .../docker_1.5-1build1_amd64.deb  ...
+正在解包 docker (1.5-1build1) ...
+正在设置 docker (1.5-1build1) ...
+正在处理用于 man-db (2.8.3-2ubuntu0.1) 的触发器 ...
+zyc@zyc-X450CC:/k8s/minikube$ docker version
+
+Command 'docker' not found, but can be installed with:
+
+sudo apt install docker.io
+
+zyc@zyc-X450CC:/k8s/minikube$ whereis docker
+docker:
+zyc@zyc-X450CC:/k8s/minikube$ sudo apt-get update
+命中:1 http://cn.archive.ubuntu.com/ubuntu bionic InRelease
+获取:2 http://security.ubuntu.com/ubuntu bionic-security InRelease [88.7 kB]
+获取:3 http://cn.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+获取:4 http://cn.archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+获取:5 http://security.ubuntu.com/ubuntu bionic-security/main amd64 DEP-11 Metadata [40.6 kB]
+获取:6 http://security.ubuntu.com/ubuntu bionic-security/universe amd64 DEP-11 Metadata [42.1 kB]
+获取:7 http://security.ubuntu.com/ubuntu bionic-security/multiverse amd64 DEP-11 Metadata [2,464 B]
+已下载 337 kB，耗时 5秒 (66.2 kB/s)
+正在读取软件包列表... 完成
+zyc@zyc-X450CC:/k8s/minikube$ sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common
+正在读取软件包列表... 完成
+正在分析软件包的依赖关系树
+正在读取状态信息... 完成
+ca-certificates 已经是最新版 (20180409)。
+ca-certificates 已设置为手动安装。
+curl 已经是最新版 (7.58.0-2ubuntu3.8)。
+software-properties-common 已经是最新版 (0.96.24.32.12)。
+software-properties-common 已设置为手动安装。
+下列软件包是自动安装的并且现在不需要了：
+  fonts-liberation2 fonts-opensymbol gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 gir1.2-gudev-1.0 gir1.2-udisks-2.0 grilo-plugins-0.3-base gstreamer1.0-gtk3 libboost-date-time1.65.1
+  libboost-filesystem1.65.1 libboost-iostreams1.65.1 libboost-locale1.65.1 libcdr-0.1-1 libclucene-contribs1v5 libclucene-core1v5 libcmis-0.5-5v5 libcolamd2 libdazzle-1.0-0 libe-book-0.1-1
+  libedataserverui-1.2-2 libeot0 libepubgen-0.1-1 libetonyek-0.1-1 libevent-2.1-6 libexiv2-14 libfreerdp-client2-2 libfreerdp2-2 libgc1c2 libgee-0.8-2 libgexiv2-2 libgom-1.0-0 libgpgmepp6 libgpod-common
+  libgpod4 liblangtag-common liblangtag1 liblirc-client0 liblua5.3-0 libmediaart-2.0-0 libmspub-0.1-1 libodfgen-0.1-1 libqqwing2v5 libraw16 librevenge-0.0-0 libsgutils2-2 libssh-4 libsuitesparseconfig5
+  libvncclient1 libwinpr2-2 libxapian30 libxmlsec1 libxmlsec1-nss lp-solve media-player-info python3-mako python3-markupsafe syslinux syslinux-common syslinux-legacy usb-creator-common
+使用'sudo apt autoremove'来卸载它(它们)。
+下列【新】软件包将被安装：
+  apt-transport-https
+升级了 0 个软件包，新安装了 1 个软件包，要卸载 0 个软件包，有 63 个软件包未被升级。
+需要下载 1,692 B 的归档。
+解压缩后会消耗 153 kB 的额外空间。
+获取:1 http://cn.archive.ubuntu.com/ubuntu bionic-updates/universe amd64 apt-transport-https all 1.6.12ubuntu0.1 [1,692 B]
+已下载 1,692 B，耗时 1秒 (2,991 B/s)
+正在选中未选择的软件包 apt-transport-https。
+(正在读取数据库 ... 系统当前共安装有 156830 个文件和目录。)
+正准备解包 .../apt-transport-https_1.6.12ubuntu0.1_all.deb  ...
+正在解包 apt-transport-https (1.6.12ubuntu0.1) ...
+正在设置 apt-transport-https (1.6.12ubuntu0.1) ...
+zyc@zyc-X450CC:/k8s/minikube$ curl -fsSL http://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+OK
+zyc@zyc-X450CC:/k8s/minikube$ sudo add-apt-repository "deb [arch=amd64] http://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+获取:1 http://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic InRelease [64.4 kB]
+获取:2 http://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable amd64 Packages [11.2 kB]
+命中:3 http://cn.archive.ubuntu.com/ubuntu bionic InRelease
+命中:4 http://security.ubuntu.com/ubuntu bionic-security InRelease
+获取:5 http://cn.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+获取:6 http://cn.archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+已下载 239 kB，耗时 6秒 (40.3 kB/s)
+正在读取软件包列表... 完成
+zyc@zyc-X450CC:/k8s/minikube$ sudo apt-get -y update
+命中:1 http://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic InRelease
+命中:2 http://cn.archive.ubuntu.com/ubuntu bionic InRelease
+获取:3 http://cn.archive.ubuntu.com/ubuntu bionic-updates InRelease [88.7 kB]
+命中:4 http://security.ubuntu.com/ubuntu bionic-security InRelease
+获取:5 http://cn.archive.ubuntu.com/ubuntu bionic-backports InRelease [74.6 kB]
+已下载 163 kB，耗时 3秒 (65.1 kB/s)
+正在读取软件包列表... 完成
+zyc@zyc-X450CC:/k8s/minikube$ sudo apt-get -y install docker-ce
+正在读取软件包列表... 完成
+正在分析软件包的依赖关系树
+正在读取状态信息... 完成
+下列软件包是自动安装的并且现在不需要了：
+  fonts-liberation2 fonts-opensymbol gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 gir1.2-gudev-1.0 gir1.2-udisks-2.0 grilo-plugins-0.3-base gstreamer1.0-gtk3 libboost-date-time1.65.1
+  libboost-filesystem1.65.1 libboost-iostreams1.65.1 libboost-locale1.65.1 libcdr-0.1-1 libclucene-contribs1v5 libclucene-core1v5 libcmis-0.5-5v5 libcolamd2 libdazzle-1.0-0 libe-book-0.1-1
+  libedataserverui-1.2-2 libeot0 libepubgen-0.1-1 libetonyek-0.1-1 libevent-2.1-6 libexiv2-14 libfreerdp-client2-2 libfreerdp2-2 libgc1c2 libgee-0.8-2 libgexiv2-2 libgom-1.0-0 libgpgmepp6 libgpod-common
+  libgpod4 liblangtag-common liblangtag1 liblirc-client0 liblua5.3-0 libmediaart-2.0-0 libmspub-0.1-1 libodfgen-0.1-1 libqqwing2v5 libraw16 librevenge-0.0-0 libsgutils2-2 libssh-4 libsuitesparseconfig5
+  libvncclient1 libwinpr2-2 libxapian30 libxmlsec1 libxmlsec1-nss lp-solve media-player-info python3-mako python3-markupsafe syslinux syslinux-common syslinux-legacy usb-creator-common
+使用'sudo apt autoremove'来卸载它(它们)。
+将会同时安装下列软件：
+  aufs-tools cgroupfs-mount containerd.io docker-ce-cli git git-man liberror-perl pigz
+建议安装：
+  git-daemon-run | git-daemon-sysvinit git-doc git-el git-email git-gui gitk gitweb git-cvs git-mediawiki git-svn
+下列【新】软件包将被安装：
+  aufs-tools cgroupfs-mount containerd.io docker-ce docker-ce-cli git git-man liberror-perl pigz
+升级了 0 个软件包，新安装了 9 个软件包，要卸载 0 个软件包，有 63 个软件包未被升级。
+需要下载 91.7 MB 的归档。
+解压缩后会消耗 426 MB 的额外空间。
+获取:1 http://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable amd64 containerd.io amd64 1.2.13-2 [21.4 MB]
+获取:2 http://cn.archive.ubuntu.com/ubuntu bionic/universe amd64 pigz amd64 2.4-1 [57.4 kB]
+获取:3 http://cn.archive.ubuntu.com/ubuntu bionic/universe amd64 aufs-tools amd64 1:4.9+20170918-1ubuntu1 [104 kB]
+获取:4 http://cn.archive.ubuntu.com/ubuntu bionic/universe amd64 cgroupfs-mount all 1.4 [6,320 B]
+获取:5 http://cn.archive.ubuntu.com/ubuntu bionic/main amd64 liberror-perl all 0.17025-1 [22.8 kB]
+获取:6 http://cn.archive.ubuntu.com/ubuntu bionic-updates/main amd64 git-man all 1:2.17.1-1ubuntu0.7 [804 kB]
+获取:7 http://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable amd64 docker-ce-cli amd64 5:19.03.8~3-0~ubuntu-bionic [42.6 MB]
+获取:8 http://cn.archive.ubuntu.com/ubuntu bionic-updates/main amd64 git amd64 1:2.17.1-1ubuntu0.7 [3,915 kB]
+获取:9 http://mirrors.aliyun.com/docker-ce/linux/ubuntu bionic/stable amd64 docker-ce amd64 5:19.03.8~3-0~ubuntu-bionic [22.9 MB]
+已下载 91.7 MB，耗时 41秒 (2,225 kB/s)
+正在选中未选择的软件包 pigz。
+(正在读取数据库 ... 系统当前共安装有 156834 个文件和目录。)
+正准备解包 .../0-pigz_2.4-1_amd64.deb  ...
+正在解包 pigz (2.4-1) ...
+正在选中未选择的软件包 aufs-tools。
+正准备解包 .../1-aufs-tools_1%3a4.9+20170918-1ubuntu1_amd64.deb  ...
+正在解包 aufs-tools (1:4.9+20170918-1ubuntu1) ...
+正在选中未选择的软件包 cgroupfs-mount。
+正准备解包 .../2-cgroupfs-mount_1.4_all.deb  ...
+正在解包 cgroupfs-mount (1.4) ...
+正在选中未选择的软件包 containerd.io。
+正准备解包 .../3-containerd.io_1.2.13-2_amd64.deb  ...
+正在解包 containerd.io (1.2.13-2) ...
+正在选中未选择的软件包 docker-ce-cli。
+正准备解包 .../4-docker-ce-cli_5%3a19.03.8~3-0~ubuntu-bionic_amd64.deb  ...
+正在解包 docker-ce-cli (5:19.03.8~3-0~ubuntu-bionic) ...
+正在选中未选择的软件包 docker-ce。
+正准备解包 .../5-docker-ce_5%3a19.03.8~3-0~ubuntu-bionic_amd64.deb  ...
+正在解包 docker-ce (5:19.03.8~3-0~ubuntu-bionic) ...
+正在选中未选择的软件包 liberror-perl。
+正准备解包 .../6-liberror-perl_0.17025-1_all.deb  ...
+正在解包 liberror-perl (0.17025-1) ...
+正在选中未选择的软件包 git-man。
+正准备解包 .../7-git-man_1%3a2.17.1-1ubuntu0.7_all.deb  ...
+正在解包 git-man (1:2.17.1-1ubuntu0.7) ...
+正在选中未选择的软件包 git。
+正准备解包 .../8-git_1%3a2.17.1-1ubuntu0.7_amd64.deb  ...
+正在解包 git (1:2.17.1-1ubuntu0.7) ...
+正在设置 aufs-tools (1:4.9+20170918-1ubuntu1) ...
+正在设置 git-man (1:2.17.1-1ubuntu0.7) ...
+正在设置 containerd.io (1.2.13-2) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/containerd.service → /lib/systemd/system/containerd.service.
+正在设置 liberror-perl (0.17025-1) ...
+正在设置 cgroupfs-mount (1.4) ...
+正在设置 docker-ce-cli (5:19.03.8~3-0~ubuntu-bionic) ...
+正在设置 pigz (2.4-1) ...
+正在设置 git (1:2.17.1-1ubuntu0.7) ...
+正在设置 docker-ce (5:19.03.8~3-0~ubuntu-bionic) ...
+Created symlink /etc/systemd/system/multi-user.target.wants/docker.service → /lib/systemd/system/docker.service.
+Created symlink /etc/systemd/system/sockets.target.wants/docker.socket → /lib/systemd/system/docker.socket.
+正在处理用于 libc-bin (2.27-3ubuntu1) 的触发器 ...
+正在处理用于 systemd (237-3ubuntu10.38) 的触发器 ...
+正在处理用于 man-db (2.8.3-2ubuntu0.1) 的触发器 ...
+正在处理用于 ureadahead (0.100.0-21) 的触发器 ...
+zyc@zyc-X450CC:/k8s/minikube$ docker
+
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Options:
+      --config string      Location of client config files (default "/home/zyc/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket(s) to connect to
+  -l, --log-level string   Set the logging level ("debug"|"info"|"warn"|"error"|"fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/home/zyc/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/home/zyc/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/home/zyc/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Management Commands:
+  builder     Manage builds
+  config      Manage Docker configs
+  container   Manage containers
+  context     Manage contexts
+  engine      Manage the docker engine
+  image       Manage images
+  network     Manage networks
+  node        Manage Swarm nodes
+  plugin      Manage plugins
+  secret      Manage Docker secrets
+  service     Manage services
+  stack       Manage Docker stacks
+  swarm       Manage Swarm
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  build       Build an image from a Dockerfile
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  deploy      Deploy a new stack or update an existing stack
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  exec        Run a command in a running container
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  images      List images
+  import      Import the contents from a tarball to create a filesystem image
+  info        Display system-wide information
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  login       Log in to a Docker registry
+  logout      Log out from a Docker registry
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  ps          List containers
+  pull        Pull an image or a repository from a registry
+  push        Push an image or a repository to a registry
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  run         Run a command in a new container
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  search      Search the Docker Hub for images
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  version     Show the Docker version information
+  wait        Block until one or more containers stop, then print their exit codes
+
+Run 'docker COMMAND --help' for more information on a command.
+zyc@zyc-X450CC:/k8s/minikube$ sudo mkdir -p /etc/docker
+zyc@zyc-X450CC:/k8s/minikube$ sudo tee /etc/docker/daemon.json <<-'EOF'
+> {
+>   "registry-mirrors": ["https://5uep4jiv.mirror.aliyuncs.com"]
+> }
+> EOF
+{
+  "registry-mirrors": ["https://5uep4jiv.mirror.aliyuncs.com"]
+}
+zyc@zyc-X450CC:/k8s/minikube$ sudo systemctl daemon-reload
+zyc@zyc-X450CC:/k8s/minikube$ sudo systemctl restart docker
+
+zyc@zyc-X450CC:/k8s/minikube$
+zyc@zyc-X450CC:/k8s/minikube$
+zyc@zyc-X450CC:/k8s/minikube$
+zyc@zyc-X450CC:/k8s/minikube$
+zyc@zyc-X450CC:/k8s/minikube$ minikube start --image-mirror-country cn \
+>     --iso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.9.0.iso \
+>     --registry-mirror=https://5uep4jiv.mirror.aliyuncs.com
+* minikube 1.10.1 is available! Download it: https://github.com/kubernetes/minikube/releases/tag/v1.10.1
+* To disable this notice, run: 'minikube config set WantUpdateNotification false'
+
+! Ubuntu 18.04 上的 minikube v1.9.2
+
+* Unable to pick a default driver. Here is what was considered, in preference order:
+  - none: Not healthy: the 'none' driver must be run as the root user
+  - podman: Not installed: exec: "podman": executable file not found in $PATH
+  - virtualbox: Not installed: unable to find VBoxManage in $PATH
+  - vmware: Not installed: exec: "docker-machine-driver-vmware": executable file not found in $PATH
+  - docker: Not healthy: exit status 1
+  - kvm2: Not installed: exec: "virsh": executable file not found in $PATH
+  - Try specifying a --driver, or see https://minikube.sigs.k8s.io/docs/start/
+zyc@zyc-X450CC:/k8s/minikube$
+zyc@zyc-X450CC:/k8s/minikube$ minikube start --image-mirror-country cn     --iso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.9.0.iso     --registry-mirror=https://5uep4jiv.mirror.aliyuncs.com --vm-driver=none
+* Ubuntu 18.04 上的 minikube v1.9.2
+* 根据用户配置使用 none 驱动程序
+
+! 'none' 驱动程序报告了一个问题： the 'none' driver must be run as the root user
+* 建议：For non-root usage, try the newer 'docker' driver
+
+X Sorry, Kubernetes v1.18.0 requires conntrack to be installed in root's path
+zyc@zyc-X450CC:/k8s/minikube$ sudo minikube start --image-mirror-country cn     --iso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.9.0.iso     --registry-mirror=https://5uep4jiv.mirror.aliyuncs.com --vm-driver=none
+* Ubuntu 18.04 上的 minikube v1.9.2
+* 根据用户配置使用 none 驱动程序
+X Sorry, Kubernetes v1.18.0 requires conntrack to be installed in root's path
+zyc@zyc-X450CC:/k8s/minikube$ systemctl stop firewalld
+==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
+停止“firewalld.service”需要认证。
+Authenticating as: zyc,,, (zyc)
+Password:
+==== AUTHENTICATION COMPLETE ===
+Failed to stop firewalld.service: Unit firewalld.service not loaded.
+zyc@zyc-X450CC:/k8s/minikube$ systemctl disable firewalld
+==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-unit-files ===
+管理系统服务或单元文件需要认证。
+Authenticating as: zyc,,, (zyc)
+Password:
+==== AUTHENTICATION COMPLETE ===
+Failed to disable unit: Unit file firewalld.service does not exist.
+zyc@zyc-X450CC:/k8s/minikube$ sudo apt-get install conntrack
+正在读取软件包列表... 完成
+正在分析软件包的依赖关系树
+正在读取状态信息... 完成
+下列软件包是自动安装的并且现在不需要了：
+  fonts-liberation2 fonts-opensymbol gir1.2-gst-plugins-base-1.0 gir1.2-gstreamer-1.0 gir1.2-gudev-1.0 gir1.2-udisks-2.0 grilo-plugins-0.3-base gstreamer1.0-gtk3 libboost-date-time1.65.1
+  libboost-filesystem1.65.1 libboost-iostreams1.65.1 libboost-locale1.65.1 libcdr-0.1-1 libclucene-contribs1v5 libclucene-core1v5 libcmis-0.5-5v5 libcolamd2 libdazzle-1.0-0 libe-book-0.1-1
+  libedataserverui-1.2-2 libeot0 libepubgen-0.1-1 libetonyek-0.1-1 libevent-2.1-6 libexiv2-14 libfreerdp-client2-2 libfreerdp2-2 libgc1c2 libgee-0.8-2 libgexiv2-2 libgom-1.0-0 libgpgmepp6 libgpod-common
+  libgpod4 liblangtag-common liblangtag1 liblirc-client0 liblua5.3-0 libmediaart-2.0-0 libmspub-0.1-1 libodfgen-0.1-1 libqqwing2v5 libraw16 librevenge-0.0-0 libsgutils2-2 libssh-4 libsuitesparseconfig5
+  libvncclient1 libwinpr2-2 libxapian30 libxmlsec1 libxmlsec1-nss lp-solve media-player-info python3-mako python3-markupsafe syslinux syslinux-common syslinux-legacy usb-creator-common
+使用'sudo apt autoremove'来卸载它(它们)。
+下列【新】软件包将被安装：
+  conntrack
+升级了 0 个软件包，新安装了 1 个软件包，要卸载 0 个软件包，有 63 个软件包未被升级。
+需要下载 30.6 kB 的归档。
+解压缩后会消耗 104 kB 的额外空间。
+获取:1 http://cn.archive.ubuntu.com/ubuntu bionic/main amd64 conntrack amd64 1:1.4.4+snapshot20161117-6ubuntu2 [30.6 kB]
+已下载 30.6 kB，耗时 6秒 (5,066 B/s)
+正在选中未选择的软件包 conntrack。
+(正在读取数据库 ... 系统当前共安装有 158048 个文件和目录。)
+正准备解包 .../conntrack_1%3a1.4.4+snapshot20161117-6ubuntu2_amd64.deb  ...
+正在解包 conntrack (1:1.4.4+snapshot20161117-6ubuntu2) ...
+正在设置 conntrack (1:1.4.4+snapshot20161117-6ubuntu2) ...
+正在处理用于 man-db (2.8.3-2ubuntu0.1) 的触发器 ...
+zyc@zyc-X450CC:/k8s/minikube$ sudo minikube start --image-mirror-country cn     --iso-url=https://kubernetes.oss-cn-hangzhou.aliyuncs.com/minikube/iso/minikube-v1.9.0.iso     --registry-mirror=https://5uep4jiv.mirror.aliyuncs.com --vm-driver=none
+* Ubuntu 18.04 上的 minikube v1.9.2
+* 根据用户配置使用 none 驱动程序
+* Starting control plane node  in cluster minikube
+* Running on localhost (CPUs=4, Memory=3821MB, Disk=703149MB) ...
+* OS release is Ubuntu 18.04.4 LTS
+* 正在 Docker 19.03.8 中准备 Kubernetes v1.18.0…
+  - kubelet.resolv-conf=/run/systemd/resolve/resolv.conf
+! This bare metal machine is having trouble accessing https://k8s.gcr.io
+* To pull new external images, you may need to configure a proxy: https://minikube.sigs.k8s.io/docs/reference/networking/proxy/
+    > kubelet.sha256: 65 B / 65 B [--------------------------] 100.00% ? p/s 0s
+    > kubeadm.sha256: 65 B / 65 B [--------------------------] 100.00% ? p/s 0s
+    > kubectl.sha256: 65 B / 65 B [--------------------------] 100.00% ? p/s 0s
+    > kubeadm: 37.96 MiB / 37.96 MiB [---------------] 100.00% 1.24 MiB p/s 31s
+    > kubectl: 41.98 MiB / 41.98 MiB [-------------] 100.00% 970.84 KiB p/s 45s
+    > kubelet: 108.01 MiB / 108.01 MiB [-------------] 100.00% 1.87 MiB p/s 58s
+* Enabling addons: default-storageclass, storage-provisioner
+* 开始配置本地主机环境...
+*
+! The 'none' driver is designed for experts who need to integrate with an existing VM
+* Most users should use the newer 'docker' driver instead, which does not require root!
+* For more information, see: https://minikube.sigs.k8s.io/docs/reference/drivers/none/
+*
+! kubectl 和 minikube 配置将存储在 /home/zyc 中
+! 如需以您自己的用户身份使用 kubectl 或 minikube 命令，您可能需要重新定位该命令。例如，如需覆盖您的自定义设置，请运行：
+*
+  - sudo mv /home/zyc/.kube /home/zyc/.minikube $HOME
+  - sudo chown -R $USER $HOME/.kube $HOME/.minikube
+*
+* 此操作还可通过设置环境变量 CHANGE_MINIKUBE_NONE_USER=true 自动完成
+* 完成！kubectl 已经配置至 "minikube"
+* 为获得最佳结果，请安装 kubectl：https://kubernetes.io/docs/tasks/tools/install-kubectl/
+zyc@zyc-X450CC:/k8s/minikube$ systemctl stop firewalld.service
+==== AUTHENTICATING FOR org.freedesktop.systemd1.manage-units ===
+停止“firewalld.service”需要认证。
+Authenticating as: zyc,,, (zyc)
+Password:
+==== AUTHENTICATION COMPLETE ===
+Failed to stop firewalld.service: Unit firewalld.service not loaded.
+zyc@zyc-X450CC:/k8s/minikube$ sudo ufw status
+状态：不活动
+zyc@zyc-X450CC:/k8s/minikube$ minikube dashboard
+*
+X Error getting cluster config: stat: stat /home/zyc/.minikube/profiles/minikube/config.json: permission denied
+*
+* 由于出错 minikube 正在退出。如果以上信息没有帮助，请提交问题反馈：
+  - https://github.com/kubernetes/minikube/issues/new/choose
+zyc@zyc-X450CC:/k8s/minikube$ sudo minikube dashboard
+* 正在开启 dashboard ...
+* 正在验证 dashboard 运行情况 ...
+* Launching proxy ...
+* 正在验证 proxy 运行状况 ...
+http://127.0.0.1:35481/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/
+
+^C
+zyc@zyc-X450CC:/k8s/minikube$ ifconfig
+docker0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        inet6 fe80::42:5dff:fe3a:d2c4  prefixlen 64  scopeid 0x20<link>
+        ether 02:42:5d:3a:d2:c4  txqueuelen 0  (以太网)
+        RX packets 4105  bytes 349243 (349.2 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 4220  bytes 1305652 (1.3 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+enp4s0f2: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        ether 74:d0:2b:ad:70:a3  txqueuelen 1000  (以太网)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (本地环回)
+        RX packets 156978  bytes 33552749 (33.5 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 156978  bytes 33552749 (33.5 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth4539314: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::cc1d:dff:fed0:a069  prefixlen 64  scopeid 0x20<link>
+        ether ce:1d:0d:d0:a0:69  txqueuelen 0  (以太网)
+        RX packets 1702  bytes 141867 (141.8 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1779  bytes 615745 (615.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth197cfcf: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::c02a:6eff:fecb:df4b  prefixlen 64  scopeid 0x20<link>
+        ether c2:2a:6e:cb:df:4b  txqueuelen 0  (以太网)
+        RX packets 334  bytes 34426 (34.4 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 417  bytes 44027 (44.0 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+veth7c8da42: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::7ccd:2bff:fe80:db17  prefixlen 64  scopeid 0x20<link>
+        ether 7e:cd:2b:80:db:17  txqueuelen 0  (以太网)
+        RX packets 358  bytes 87791 (87.7 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 423  bytes 49748 (49.7 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+vethffbba44: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet6 fe80::e42c:73ff:fef7:dee2  prefixlen 64  scopeid 0x20<link>
+        ether e6:2c:73:f7:de:e2  txqueuelen 0  (以太网)
+        RX packets 1711  bytes 142629 (142.6 KB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 1804  bytes 618267 (618.2 KB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+wlp3s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.31.211  netmask 255.255.255.0  broadcast 192.168.31.255
+        inet6 fe80::cbc3:52c7:7868:9409  prefixlen 64  scopeid 0x20<link>
+        ether 6c:71:d9:95:d5:86  txqueuelen 1000  (以太网)
+        RX packets 886716  bytes 1222444797 (1.2 GB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 339809  bytes 30492452 (30.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+zyc@zyc-X450CC:/k8s/minikube$ kubectl proxy --port=8001 --accept-hosts='^.*' --address='192.168.31.211'
+kubectl：未找到命令
+zyc@zyc-X450CC:/k8s/minikube$ ll
+总用量 122416
+drwxr-xr-x 2 root root     4096 5月  16 06:05 ./
+drwxr-xr-x 3 root root     4096 5月  16 05:27 ../
+-rw-r--r-- 1 root root 70704763 5月  16 05:29 kubectl
+-rwxr-xr-x 1 root root 54639377 5月  16 06:05 minikube*
+zyc@zyc-X450CC:/k8s/minikube$ chmod +x kubectl
+chmod: 更改'kubectl' 的权限: 不允许的操作
+zyc@zyc-X450CC:/k8s/minikube$ sudo chmod +x kubectl
+zyc@zyc-X450CC:/k8s/minikube$ sudo cp kubectl /usr/local/bin/
+zyc@zyc-X450CC:/k8s/minikube$ kubectl proxy --port=8001 --accept-hosts='^.*' --address='192.168.31.211'
+error: Error loading config file "/home/zyc/.kube/config": open /home/zyc/.kube/config: permission denied
+zyc@zyc-X450CC:/k8s/minikube$ sudo kubectl proxy --port=8001 --accept-hosts='^.*' --address='192.168.31.211'
+Starting to serve on 192.168.31.211:8001
+访问：
+http://192.168.31.211:8001/api/v1/namespaces/kubernetes-dashboard/services/http:kubernetes-dashboard:/proxy/#/clusterrole?namespace=default%E4%BD%9C%E8%80%85%EF%BC%9ADanielXiao%E9%93%BE%E6%8E%A5%EF%BC%9Ahttps:%2F%2Fwww.jianshu.com%2Fp%2F2b109945d8d4%E6%9D%A5%E6%BA%90%EF%BC%9A%E7%AE%80%E4%B9%A6%E8%91%97%E4%BD%9C%E6%9D%83%E5%BD%92%E4%BD%9C%E8%80%85%E6%89%80%E6%9C%89%E3%80%82%E5%95%86%E4%B8%9A%E8%BD%AC%E8%BD%BD%E8%AF%B7%E8%81%94%E7%B3%BB%E4%BD%9C%E8%80%85%E8%8E%B7%E5%BE%97%E6%8E%88%E6%9D%83%EF%BC%8C%E9%9D%9E%E5%95%86%E4%B8%9A%E8%BD%AC%E8%BD%BD%E8%AF%B7%E6%B3%A8%E6%98%8E%E5%87%BA%E5%A4%84%E3%80%82

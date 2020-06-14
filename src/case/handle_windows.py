@@ -59,14 +59,15 @@ class HandleWindows(object):
         theLabel = tk.Label(py_frame2,width=b_width,height=b_height,text=text,wraplength = 300,justify = 'left',anchor = 'nw')
         theLabel.place(x=5,y=5)
 
-    def _show_case_except(self,text = "Steps",f_width = 340,f_height = 255,b_width=45,b_height=13):
+    def _show_case_except(self,text = "Except",f_width = 340,f_height = 255,b_width=45,b_height=13):
         py_frame2 = tk.LabelFrame(self.root_windows,text = "Excepts",width = f_width,height = f_height)
         py_frame2.place(x=240,y=270)
         if self.handle_case:
-            text=self.handle_case.get_current_case_detail()
+            text=self.handle_case.get_current_case_except()
         else:
             text = ""
         #text = ""
+        print("---------------{}".format(text))
         theLabel = tk.Label(py_frame2,width=b_width,height=b_height,text=text,wraplength = 300,justify = 'left',anchor = 'nw')
         theLabel.place(x=5,y=5)
 
@@ -95,16 +96,16 @@ class HandleWindows(object):
     def _show_case_notes(self,text = "Notes",f_width = 220,f_height = 220,b_width=28,b_height=14):
         py_frame4 = tk.LabelFrame(self.root_windows,text = "Notes",width = f_width,height = f_height)
         py_frame4.place(x=940,y=230)
-        result_text = tk.Text(py_frame4, width=b_width, height=b_height)
-        result_text.place(x=5,y=5)
-        self.result_text = result_text
+        note_text = tk.Text(py_frame4, width=b_width, height=b_height)
+        note_text.place(x=5,y=5)
+        self.note_text = note_text
 
     def _show_case_reviewer(self,text = "Reviewer",f_width = 220,f_height = 60,b_width=28,b_height=2):
         py_frame4 = tk.LabelFrame(self.root_windows,text = "Reviewer",width = f_width,height = f_height)
         py_frame4.place(x=940,y=465)
-        result_text = tk.Text(py_frame4, width=b_width, height=b_height)
-        result_text.place(x=5,y=5)
-        self.result_text = result_text
+        review_text = tk.Text(py_frame4, width=b_width, height=b_height)
+        review_text.place(x=5,y=5)
+        self.review_text = review_text
 
     def _show_record_button(self):
         update_button1 = tk.Button(self.root_windows,bg = 'whitesmoke',text="Record Result",width = 15, height = 2,command = self._record_result)
@@ -120,7 +121,7 @@ class HandleWindows(object):
 
     def _show_reflush_button(self):
         ##已废弃
-        update_button3 = tk.Button(self.root_windows,bg = 'whitesmoke',text="Reflush Case",width = 15, height = 2,command = self._reflush_case)
+        update_button3 = tk.Button(self.root_windows,bg = 'whitesmoke',text="import Case",width = 15, height = 2,command = self._open_excel)
         update_button3.place(x = 60 , y=535)
 
     def _reflush_case(self,event):
@@ -137,8 +138,12 @@ class HandleWindows(object):
 
     def _record_result(self):
         ##记录用户数输入的result
-        context = self.result_text.get("0.0","end")
-        self.handle_case.set_current_case_result(context)
+        result_context = self.result_text.get("0.0","end")
+        self.handle_case.set_current_case_result(result_context)
+        note_context = self.note_text.get("0.0","end")
+        self.handle_case.set_current_case_note(note_context)
+        review_context = self.review_text.get("0.0","end")
+        self.handle_case.set_current_case_review(review_context)
         #self.result_text.delete("0.0","end")
 
     def _import_log(self):
@@ -148,12 +153,13 @@ class HandleWindows(object):
         self.handle_case.set_current_log_path(log_path)
         self._show_case_logs()
 
-    def _open_excel(self,event):
+    def _open_excel(self,event=None):
         ##通过文件管理器获取excel表路径
         case_path = filedialog.askopenfilename(initialdir=self.log_path)
         print(case_path)
         self.handle_case = HandleCase(case_path)
         self._show_case_list()
+        self._show_case_except()
         self._show_case_steps()
         self._show_case_logs()
 

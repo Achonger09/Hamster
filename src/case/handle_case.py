@@ -25,8 +25,11 @@ class HandleCase(object):
         self.case_list = case_loader.case_load()
         self.case_name = "Case_name"
         self.case_step = "Case_step"
+        self.case_except = "Case_except"
         self.case_log = "Log"
         self.case_result = "Result"
+        self.case_note = "Note"
+        self.case_review = "Reviewer"
 
     def _init_log_path_list(self,case_dir):
         ##初始化所有case path路径下的log文件
@@ -51,6 +54,9 @@ class HandleCase(object):
 
     def get_current_case_detail(self):
         return self.get_current_case().get_case_detail()
+
+    def get_current_case_except(self):
+        return self.get_current_case().get_case_except()
 
     def get_current_case_log(self):
         if self.get_current_case().get_case_log_path():
@@ -85,13 +91,20 @@ class HandleCase(object):
     def set_current_case_result(self,result):
         self.get_current_case().set_case_result(result)
 
+    def set_current_case_note(self,note):
+        self.get_current_case().set_case_note(note)
+
+    def set_current_case_review(self,review):
+        self.get_current_case().set_case_review(review)
+
     def export_case_to_excel(self,excel_path):
         ##将内存中数据输出指定Excel表
         new_case_list = list()
-        new_case_list.append([self.case_name,self.case_step,self.case_log,self.case_result])
+        #new_case_list.append([self.case_name,self.case_step,self.case_log,self.case_result])
+        new_case_list.append([self.case_name,self.case_step,self.case_except,self.case_result,self.case_note,self.case_review])
         for case in self.case_list:
             new_case_list.append([case.get_case_name(),case.get_case_detail(),
-                                 case.get_case_log(),case.get_case_result()])
+                                 case.get_case_except(),case.get_case_result(),case.get_case_note(),case.get_case_review()])
         myWorkbook = xlwt.Workbook()
         mySheet = myWorkbook.add_sheet('text_excel')
         for i in range(len(new_case_list)):

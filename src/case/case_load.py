@@ -33,9 +33,10 @@ class CaseLoad(object):
         for i in range(1,self.nrows):
             case_name = self.table.cell(i,self.case_name_index).value
             case_step = self.table.cell(i,self.case_step_index).value
-            print("ADD : "+case_name + case_step)
+            case_except = self.table.cell(i,self.case_except_index).value
+            print("ADD : "+case_name + case_step+case_except)
             ##目前只使用casename,casestep初始化，后续有变动在适配
-            case_list.append(Case(case_name,case_step))
+            case_list.append(Case(case_name,case_step,case_except))
         return case_list
 
     def __get_col_by_name(self,name):
