@@ -14,7 +14,10 @@ class HandleCase(object):
         #excel_path = "D:\\python_demo\\Hamster\\test\\test.xls"
         #log path从配置文件读取
         #case_path = cfg.get("path","log_path")
-        case_path = ''
+        print("excel Path {}".format(excel_path))
+        index = excel_path.rfind("/")
+        print("case path {}".format(os.path.abspath(excel_path[:index])))
+        case_path = os.path.abspath(excel_path[:index])
         self.log_path_list = self._init_log_path_list(case_path)
         print(self.log_path_list)
         self.current_index = 0
@@ -54,6 +57,7 @@ class HandleCase(object):
             log_path = self.get_current_case().get_case_log_path()
         else:
             log_path = self._locate_log_path()
+        print("log path: {}".format(log_path))
         if log_path:
             ##待适配为读取文件内容
             with open(log_path,'r',encoding='utf-8') as f:

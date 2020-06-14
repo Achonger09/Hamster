@@ -76,8 +76,9 @@ class HandleWindows(object):
         if self.handle_case:
             context = self.handle_case.get_current_case_log()
         else:
-            context = ""
+            context = "None!!!"
         log_text = tk.Text(py_frame3,width=b_width,height=b_height)
+        print("context:{}".format(context))
         log_text.insert(tk.INSERT,context)
         log_text.place(x=5,y=5)
         log_text.bind('<Control-f>',self._search_log)
@@ -164,6 +165,23 @@ class HandleWindows(object):
         self.handle_case.export_case_to_excel(export_path)
 
     def _search_log(self,event):
+        ## Ctrl + F触发
+        print("ctl+f --->search")
+        res = askstring("Search", "Key Words")
+        print(res)
+        context = self.handle_case.get_current_case_log()
+        tmp_list = context.split(res)
+        self.log_text.delete("0.0","end")
+        self.log_text.tag_delete("1.0","end")
+        self.log_text.tag_config('blue',foreground = 'blue')
+        for index in range(len(tmp_list)-1):
+            self.log_text.insert(tk.CURRENT,tmp_list[index])
+            self.log_text.insert(tk.CURRENT,res,'blue')
+        self.log_text.place(x=5,y=5)
+
+    '''
+    ##废弃
+    def _search_log(self,event):
         ##Ctrl+F触发此接口
         print("ctrl+f---->search")
         res = askstring("Search", "Key Words")
@@ -201,7 +219,7 @@ class HandleWindows(object):
             return self._find_index_all(key_word,new_context,index_list)
         else:
             return index_list
-
+    '''
     def run_windows(self):
         self._show_case_list()
         self._show_case_steps()
