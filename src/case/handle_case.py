@@ -74,7 +74,7 @@ class HandleCase(object):
         print("log path: {}".format(log_path))
         if log_path:
             ##待适配为读取文件内容
-            with open(log_path, "r", encoding="utf-8") as f:
+            with open(log_path, "r", encoding="ISO-8859-1") as f:
                 log = f.read()
             # log = log_path
             self.set_current_log(log)
