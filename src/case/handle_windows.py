@@ -113,15 +113,20 @@ class HandleWindows(object):
             text = ""
         # text = ""
         print("---------------{}".format(text))
+        #sb = tk.Scrollbar(py_frame2)
         theLabel = tk.Label(
             py_frame2,
-            width=b_width,
+            width=b_width-1,
             height=b_height,
             text=text,
             wraplength=300,
             justify="left",
             anchor="nw",
+            #yscrollcommand=sb.set
         )
+        theLabel.pack(side = tk.LEFT,fill = tk.BOTH)
+        #sb.pack(side=tk.RIGHT, fill=tk.Y)
+        #sb.config(command=theLabel.yview)
         theLabel.place(x=5, y=5)
 
     def _show_case_logs(
@@ -135,12 +140,23 @@ class HandleWindows(object):
             context = self.handle_case.get_current_case_log()
         else:
             context = "None!!!"
-        log_text = tk.Text(py_frame3, width=b_width, height=b_height)
+        scroll = tk.Scrollbar()
+        sb = tk.Scrollbar(py_frame3)
+        #sb.place(x=316,y=5)
+        #sb.pack(side=tk.RIGHT, fill=tk.Y)
+        log_text = tk.Text(py_frame3, width=b_width-1, height=b_height,yscrollcommand=sb.set)
+
         print("context:{}".format(context))
+        #sb.config(command=log_text.yview)
         log_text.insert(tk.INSERT, context)
-        log_text.place(x=5, y=5)
+        #log_text.place(x=5, y=5)
+        log_text.pack(side = tk.LEFT,fill = tk.BOTH)
+        sb.pack(side=tk.RIGHT, fill=tk.Y)
+        sb.config(command=log_text.yview)
         log_text.bind("<Control-f>", self._search_log)
         self.log_text = log_text
+
+        sb.config(command=log_text.yview)
 
     def _show_case_result(
         self, text="Result", f_width=220, f_height=220, b_width=28, b_height=14
@@ -281,7 +297,8 @@ class HandleWindows(object):
             self.log_text.insert(tk.CURRENT, tmp_list[index])
             self.log_text.insert(tk.CURRENT, res, "blue")
         self.log_text.insert(tk.CURRENT, tmp_list[-1])
-        self.log_text.place(x=5, y=5)
+        #self.log_text.place(x=5, y=5)
+        self.log_text.pack(side = tk.LEFT,fill = tk.BOTH)
 
     """
     ##废弃
