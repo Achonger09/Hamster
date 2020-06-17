@@ -24,14 +24,15 @@ class HandleCase(object):
         self.current_index = 0
         case_loader = CaseLoad(excel_path)
         self.case_list = case_loader.case_load()
-        self.case_name = "Case_name"
+        self.sheet_name="测试用例集"
+        self.case_name = "用例编号"
         self.case_title = "用例标题"
-        self.case_step = "Case_step"
-        self.case_except = "Case_except"
+        self.case_step = "测试步骤"
+        self.case_except = "预期结果"
         self.case_log = "Log"
-        self.case_result = "Result"
-        self.case_note = "Note"
-        self.case_review = "Reviewer"
+        self.case_result = "检视结果"
+        self.case_note = "备注"
+        self.case_review = "检视人"
 
     def _init_log_path_list(self, case_dir):
         ##初始化所有case path路径下的log文件
@@ -133,7 +134,7 @@ class HandleCase(object):
                 ]
             )
         myWorkbook = xlwt.Workbook()
-        mySheet = myWorkbook.add_sheet("text_excel")
+        mySheet = myWorkbook.add_sheet(self.sheet_name)
         for i in range(len(new_case_list)):
             for j in range(len(new_case_list[i])):
                 mySheet.write(i, j, new_case_list[i][j])

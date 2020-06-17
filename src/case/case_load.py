@@ -10,11 +10,11 @@ class CaseLoad(object):
     def __init__(self, in_case_path):
         self.input_case_path = in_case_path
         ##以下信息带适配为从配置文件获取
-        self.sheet_name = "Sheet1"
-        self.case_name = "Case_name"
+        self.sheet_name = "测试用例集"
+        self.case_name = "用例编号"
         self.case_title = "用例标题"
-        self.case_step = "Case_step"
-        self.case_except = "Case_except"
+        self.case_step = "测试步骤"
+        self.case_except = "预期结果"
         self.case_other = "other"
 
     def _init_excel(self):
@@ -38,6 +38,8 @@ class CaseLoad(object):
             case_title = self.table.cell(i, self.case_title_index).value
             case_step = self.table.cell(i, self.case_step_index).value
             case_except = self.table.cell(i, self.case_except_index).value
+            if case_name.replace(" ","") == "":
+                continue
             print("ADD : " + case_name + case_step + case_except)
             ##目前只使用casename,casestep初始化，后续有变动在适配
             case_list.append(Case(case_name, case_title, case_step, case_except))

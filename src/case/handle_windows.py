@@ -42,14 +42,21 @@ class HandleWindows(object):
             self.root_windows, text="Case List", width=f_width, height=f_height
         )
         py_frame1.place(x=10, y=5)
+        scroll = tk.Scrollbar()
+        sb = tk.Scrollbar(py_frame1)
         theLB = tk.Listbox(
-            py_frame1, selectmode=tk.SINGLE, width=b_width, height=b_height
+            py_frame1, selectmode=tk.SINGLE, width=b_width, height=b_height,yscrollcommand=sb.set
         )
-        theLB.place(x=5, y=5)
+        #theLB.insert(tk.INSERT, text)
+
+        #theLB.place(x=5, y=5)
         if self.handle_case:
             for case_name in self.handle_case.get_case_names():
                 theLB.insert(tk.END, case_name)
         self.theLB = theLB
+        theLB.pack(side = tk.LEFT,fill = tk.BOTH)
+        sb.pack(side=tk.RIGHT, fill=tk.Y)
+        sb.config(command=theLB.yview)
         # 双击事件
         theLB.bind("<Double-Button-1>", self._reflush_case)
         theLB.bind("<Control-n>", self._open_excel)
@@ -57,7 +64,7 @@ class HandleWindows(object):
         #    theLB.insert(tk.END,"Test_abcdefghjgl_00"+str(i))
 
     def _show_case_title(
-        self, text="Title", f_width=340, f_height=50, b_width=45, b_height=1
+        self, text="Title", f_width=333, f_height=50, b_width=45, b_height=1
     ):
         py_frame2 = tk.LabelFrame(
             self.root_windows, text="Title", width=f_width, height=f_height
@@ -79,7 +86,7 @@ class HandleWindows(object):
         theLabel.place(x=5, y=5)
 
     def _show_case_steps(
-        self, text="Steps", f_width=340, f_height=235, b_width=45, b_height=9
+        self, text="Steps", f_width=340, f_height=235, b_width=45, b_height=16
     ):
         py_frame2 = tk.LabelFrame(
             self.root_windows, text="Steps", width=f_width, height=f_height
@@ -89,19 +96,22 @@ class HandleWindows(object):
             text = self.handle_case.get_current_case_detail()
         else:
             text = ""
-        theLabel = tk.Label(
+        scroll = tk.Scrollbar()
+        sb = tk.Scrollbar(py_frame2)
+        theLabel = tk.Text(
             py_frame2,
-            width=b_width,
+            width=b_width-1,
             height=b_height,
-            text=text,
-            wraplength=300,
-            justify="left",
-            anchor="nw",
+            yscrollcommand=sb.set
         )
-        theLabel.place(x=5, y=5)
+        theLabel.insert(tk.INSERT, text)
+        theLabel.pack(side = tk.LEFT,fill = tk.BOTH)
+        sb.pack(side=tk.RIGHT, fill=tk.Y)
+        sb.config(command=theLabel.yview)
+
 
     def _show_case_except(
-        self, text="Except", f_width=340, f_height=235, b_width=45, b_height=9
+        self, text="Except", f_width=340, f_height=235, b_width=45, b_height=16
     ):
         py_frame2 = tk.LabelFrame(
             self.root_windows, text="Excepts", width=f_width, height=f_height
@@ -112,25 +122,27 @@ class HandleWindows(object):
         else:
             text = ""
         # text = ""
+        scroll = tk.Scrollbar()
+        sb = tk.Scrollbar(py_frame2)
         print("---------------{}".format(text))
         #sb = tk.Scrollbar(py_frame2)
-        theLabel = tk.Label(
+        theLabel = tk.Text(
             py_frame2,
             width=b_width-1,
             height=b_height,
-            text=text,
-            wraplength=300,
-            justify="left",
-            anchor="nw",
-            #yscrollcommand=sb.set
+            yscrollcommand=sb.set
         )
+        #theLabel.pack(side = tk.LEFT,fill = tk.BOTH)
+        theLabel.insert(tk.INSERT, text)
         theLabel.pack(side = tk.LEFT,fill = tk.BOTH)
+        sb.pack(side=tk.RIGHT, fill=tk.Y)
+        sb.config(command=theLabel.yview)
         #sb.pack(side=tk.RIGHT, fill=tk.Y)
         #sb.config(command=theLabel.yview)
-        theLabel.place(x=5, y=5)
+        #theLabel.place(x=5, y=5)
 
     def _show_case_logs(
-        self, text="Logs", f_width=340, f_height=520, b_width=45, b_height=37
+        self, text="Logs", f_width=340, f_height=520, b_width=45, b_height=38
     ):
         py_frame3 = tk.LabelFrame(
             self.root_windows, text="Logs", width=f_width, height=f_height
@@ -186,7 +198,7 @@ class HandleWindows(object):
         py_frame4 = tk.LabelFrame(
             self.root_windows, text="Reviewer", width=f_width, height=f_height
         )
-        py_frame4.place(x=940, y=465)
+        py_frame4.place(x=940, y=462)
         review_text = tk.Text(py_frame4, width=b_width, height=b_height)
         review_text.place(x=5, y=5)
         self.review_text = review_text
