@@ -50,6 +50,7 @@ class HandleCase(object):
         return list(case_names)
 
     def get_current_case(self):
+        #print("---###--- current index:{}".format(self.current_index))
         return self.case_list[self.current_index]
 
     def get_current_case_name(self):
@@ -100,11 +101,20 @@ class HandleCase(object):
     def set_current_case_result(self, result):
         self.get_current_case().set_case_result(result)
 
+    def get_current_case_result(self):
+        return self.get_current_case().get_case_result()
+
     def set_current_case_note(self, note):
         self.get_current_case().set_case_note(note)
 
+    def get_current_case_note(self):
+        return self.get_current_case().get_case_note()
+
     def set_current_case_review(self, review):
         self.get_current_case().set_case_review(review)
+
+    def get_current_case_review(self):
+        return self.get_current_case().get_case_review()
 
     def export_case_to_excel(self, excel_path):
         ##将内存中数据输出指定Excel表

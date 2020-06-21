@@ -96,7 +96,6 @@ class HandleWindows(object):
             text = self.handle_case.get_current_case_detail()
         else:
             text = ""
-        scroll = tk.Scrollbar()
         sb = tk.Scrollbar(py_frame2)
         theLabel = tk.Text(
             py_frame2,
@@ -152,6 +151,8 @@ class HandleWindows(object):
             context = self.handle_case.get_current_case_log()
         else:
             context = "None!!!"
+        if not context:
+            context = " "
         scroll = tk.Scrollbar()
         sb = tk.Scrollbar(py_frame3)
         #sb.place(x=316,y=5)
@@ -180,6 +181,14 @@ class HandleWindows(object):
         result_text = tk.Text(py_frame4, width=b_width, height=b_height)
         result_text.place(x=5, y=5)
         self.result_text = result_text
+        if self.handle_case:
+            result = self.handle_case.get_current_case_result()
+        else:
+            result = " "
+        if not result:
+            result = " "
+        print("show windows result :{}".format(result))
+        result_text.insert(tk.CURRENT,result)
 
     def _show_case_notes(
         self, text="Notes", f_width=220, f_height=220, b_width=28, b_height=14
@@ -191,6 +200,14 @@ class HandleWindows(object):
         note_text = tk.Text(py_frame4, width=b_width, height=b_height)
         note_text.place(x=5, y=5)
         self.note_text = note_text
+        #note_text.delete(0, 'end')
+        if self.handle_case:
+            note = self.handle_case.get_current_case_note()
+        else:
+            note = " "
+        if not note:
+            note = " "
+        note_text.insert(tk.INSERT,note)
 
     def _show_case_reviewer(
         self, text="Reviewer", f_width=220, f_height=60, b_width=28, b_height=2
@@ -202,6 +219,15 @@ class HandleWindows(object):
         review_text = tk.Text(py_frame4, width=b_width, height=b_height)
         review_text.place(x=5, y=5)
         self.review_text = review_text
+        #review_text.delete(0, 'end')
+        if self.handle_case:
+            review = self.handle_case.get_current_case_review()
+        else:
+            review = " "
+        if not review:
+            review = " "
+        review_text.insert(tk.INSERT,review)
+
 
     def _show_record_button(self):
         update_button1 = tk.Button(
@@ -255,21 +281,29 @@ class HandleWindows(object):
         if case_index[0]:
             print(case_index)
             self.handle_case.set_index(case_index[0])
+            print("context result :{},note:{}".format(self.handle_case.get_current_case_result(),self.handle_case.get_current_case_note()))
             ##没必要完全重画，待优化
             self._show_case_steps()
             self._show_case_logs()
             self._show_case_list()
+            self._show_case_result()
             self._show_case_title()
             self._show_case_except()
-            self.result_text.delete("0.0", "end")
+            self._show_case_notes()
+            self._show_case_reviewer()
+            #self.result_text.delete("0.0", "end")
 
     def _record_result(self):
         ##记录用户数输入的result
         result_context = self.result_text.get("0.0", "end")
+        print("record result:{}".format(result_context))
         self.handle_case.set_current_case_result(result_context)
+        print("after record result:{}".format(self.handle_case.get_current_case_result()))
         note_context = self.note_text.get("0.0", "end")
+        print("record note:{}".format(note_context))
         self.handle_case.set_current_case_note(note_context)
         review_context = self.review_text.get("0.0", "end")
+        print("record review:{}".format(review_context))
         self.handle_case.set_current_case_review(review_context)
         # self.result_text.delete("0.0","end")
 
@@ -290,6 +324,9 @@ class HandleWindows(object):
         self._show_case_except()
         self._show_case_steps()
         self._show_case_logs()
+        self._show_case_result()
+        self._show_case_notes()
+        self._show_case_reviewer()
 
     def _save_excel(self):
         ##目前写死路径，后面改为时间戳形式的路径

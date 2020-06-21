@@ -52,9 +52,11 @@ class Case(object):
         return self.case_log_path
 
     def set_case_result(self, case_result):
+        print("----------case : set result:{}".format(case_result))
         self.case_result = case_result
 
     def get_case_result(self):
+        print("------------case : get result :{}".format(self.case_result))
         return self.case_result
 
     def get_case_log(self):
