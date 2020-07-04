@@ -10,7 +10,7 @@ import os
 class HandleCase(object):
     ##处理Excel表信息的总入口
 
-    def __init__(self, excel_path):
+    def __init__(self, excel_path, config):
         ##暂时写死路径，后续通过配置文件传入
         # excel_path = "D:\\python_demo\\Hamster\\test\\test.xls"
         # log path从配置文件读取
@@ -22,17 +22,18 @@ class HandleCase(object):
         self.log_path_list = self._init_log_path_list(case_path)
         print(self.log_path_list)
         self.current_index = 0
-        case_loader = CaseLoad(excel_path)
+        case_loader = CaseLoad(excel_path, config=config)
         self.case_list = case_loader.case_load()
-        self.sheet_name="测试用例集"
-        self.case_name = "用例编号"
-        self.case_title = "用例标题"
-        self.case_step = "测试步骤"
-        self.case_except = "预期结果"
-        self.case_log = "Log"
-        self.case_result = "检视结果"
-        self.case_note = "备注"
-        self.case_review = "检视人"
+
+        self.sheet_name = config.get("excel", "sheet_name")
+        self.case_name = config.get("excel", "case_name")
+        self.case_title = config.get("excel", "case_title")
+        self.case_step = config.get("excel", "case_step")
+        self.case_except = config.get("excel", "case_except")
+        self.case_log = config.get("excel", "case_log")
+        self.case_result = config.get("excel", "case_result")
+        self.case_note = config.get("excel", "case_note")
+        self.case_review = config.get("excel", "case_review")
 
     def _init_log_path_list(self, case_dir):
         ##初始化所有case path路径下的log文件
@@ -50,7 +51,7 @@ class HandleCase(object):
         return list(case_names)
 
     def get_current_case(self):
-        #print("---###--- current index:{}".format(self.current_index))
+        # print("---###--- current index:{}".format(self.current_index))
         return self.case_list[self.current_index]
 
     def get_current_case_name(self):

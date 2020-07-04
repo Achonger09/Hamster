@@ -14,7 +14,7 @@ class HandleWindows(object):
     def __init__(self):
         self.pwd = os.getcwd()
         print(self.pwd)
-        #root_size = "1170x600"
+        # root_size = "1170x600"
         # root_size = cfg.get("windows","root_size")
         # root_title = cfg.get("windows","root_title")
         # log_path=cfg.get("path","log_path")
@@ -30,7 +30,7 @@ class HandleWindows(object):
         screenWidth_x = screenWidth - 30
         screenHeight_y = screenHeight - 100
         root_windows.title(root_title)
-        root_windows.geometry("%dx%d" % (screenWidth_x,screenHeight_y))
+        root_windows.geometry("%dx%d" % (screenWidth_x, screenHeight_y))
         if excel_path and os.path.exists(excel_path) and os.path.isfile(excel_path):
             ha = HandleCase(excel_path)
         else:
@@ -49,16 +49,20 @@ class HandleWindows(object):
         scroll = tk.Scrollbar()
         sb = tk.Scrollbar(py_frame1)
         theLB = tk.Listbox(
-            py_frame1, selectmode=tk.SINGLE, width=b_width, height=b_height,yscrollcommand=sb.set
+            py_frame1,
+            selectmode=tk.SINGLE,
+            width=b_width,
+            height=b_height,
+            yscrollcommand=sb.set,
         )
-        #theLB.insert(tk.INSERT, text)
+        # theLB.insert(tk.INSERT, text)
 
-        #theLB.place(x=5, y=5)
+        # theLB.place(x=5, y=5)
         if self.handle_case:
             for case_name in self.handle_case.get_case_names():
                 theLB.insert(tk.END, case_name)
         self.theLB = theLB
-        theLB.pack(side = tk.LEFT,fill = tk.BOTH)
+        theLB.pack(side=tk.LEFT, fill=tk.BOTH)
         sb.pack(side=tk.RIGHT, fill=tk.Y)
         sb.config(command=theLB.yview)
         # 双击事件
@@ -103,16 +107,12 @@ class HandleWindows(object):
         scroll = tk.Scrollbar()
         sb = tk.Scrollbar(py_frame2)
         theLabel = tk.Text(
-            py_frame2,
-            width=b_width-1,
-            height=b_height,
-            yscrollcommand=sb.set
+            py_frame2, width=b_width - 1, height=b_height, yscrollcommand=sb.set
         )
         theLabel.insert(tk.INSERT, text)
-        theLabel.pack(side = tk.LEFT,fill = tk.BOTH)
+        theLabel.pack(side=tk.LEFT, fill=tk.BOTH)
         sb.pack(side=tk.RIGHT, fill=tk.Y)
         sb.config(command=theLabel.yview)
-
 
     def _show_case_except(
         self, text="Except", f_width=380, f_height=235, b_width=51, b_height=15
@@ -129,21 +129,18 @@ class HandleWindows(object):
         scroll = tk.Scrollbar()
         sb = tk.Scrollbar(py_frame2)
         print("---------------{}".format(text))
-        #sb = tk.Scrollbar(py_frame2)
+        # sb = tk.Scrollbar(py_frame2)
         theLabel = tk.Text(
-            py_frame2,
-            width=b_width-1,
-            height=b_height,
-            yscrollcommand=sb.set
+            py_frame2, width=b_width - 1, height=b_height, yscrollcommand=sb.set
         )
-        #theLabel.pack(side = tk.LEFT,fill = tk.BOTH)
+        # theLabel.pack(side = tk.LEFT,fill = tk.BOTH)
         theLabel.insert(tk.INSERT, text)
-        theLabel.pack(side = tk.LEFT,fill = tk.BOTH)
+        theLabel.pack(side=tk.LEFT, fill=tk.BOTH)
         sb.pack(side=tk.RIGHT, fill=tk.Y)
         sb.config(command=theLabel.yview)
-        #sb.pack(side=tk.RIGHT, fill=tk.Y)
-        #sb.config(command=theLabel.yview)
-        #theLabel.place(x=5, y=5)
+        # sb.pack(side=tk.RIGHT, fill=tk.Y)
+        # sb.config(command=theLabel.yview)
+        # theLabel.place(x=5, y=5)
 
     def _show_case_logs(
         self, text="Logs", f_width=340, f_height=520, b_width=90, b_height=49
@@ -158,15 +155,17 @@ class HandleWindows(object):
             context = "None!!!"
         scroll = tk.Scrollbar()
         sb = tk.Scrollbar(py_frame3)
-        #sb.place(x=316,y=5)
-        #sb.pack(side=tk.RIGHT, fill=tk.Y)
-        log_text = tk.Text(py_frame3, width=b_width-1, height=b_height,yscrollcommand=sb.set)
+        # sb.place(x=316,y=5)
+        # sb.pack(side=tk.RIGHT, fill=tk.Y)
+        log_text = tk.Text(
+            py_frame3, width=b_width - 1, height=b_height, yscrollcommand=sb.set
+        )
 
         print("context:{}".format(context))
-        #sb.config(command=log_text.yview)
+        # sb.config(command=log_text.yview)
         log_text.insert(tk.INSERT, context)
-        #log_text.place(x=5, y=5)
-        log_text.pack(side = tk.LEFT,fill = tk.BOTH)
+        # log_text.place(x=5, y=5)
+        log_text.pack(side=tk.LEFT, fill=tk.BOTH)
         sb.pack(side=tk.RIGHT, fill=tk.Y)
         sb.config(command=log_text.yview)
         log_text.bind("<Control-f>", self._search_log)
@@ -315,8 +314,8 @@ class HandleWindows(object):
             self.log_text.insert(tk.CURRENT, tmp_list[index])
             self.log_text.insert(tk.CURRENT, res, "blue")
         self.log_text.insert(tk.CURRENT, tmp_list[-1])
-        #self.log_text.place(x=5, y=5)
-        self.log_text.pack(side = tk.LEFT,fill = tk.BOTH)
+        # self.log_text.place(x=5, y=5)
+        self.log_text.pack(side=tk.LEFT, fill=tk.BOTH)
 
     """
     ##废弃

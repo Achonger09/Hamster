@@ -7,16 +7,26 @@ class Case(object):
     Case 类，存放Case信息的字段
     """
 
-    def __init__(self, case_name, case_title=None, case_detail=None, case_except=None):
+    def __init__(
+        self,
+        case_name,
+        case_title=None,
+        case_detail=None,
+        case_except=None,
+        case_log=None,
+        case_result=None,
+        case_note=None,
+        case_review=None,
+    ):
         self.case_name = case_name
         self.case_detail = case_detail
         self.case_except = case_except
         self.case_title = case_title
         self.case_log_path = None
-        self.case_log = None
-        self.case_result = None
-        self.case_note = None
-        self.case_review = None
+        self.case_log = case_log
+        self.case_result = case_result
+        self.case_note = case_note
+        self.case_review = case_review
 
     def get_case_title(self):
         return self.case_title
