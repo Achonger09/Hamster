@@ -147,11 +147,11 @@ class HandleWindows(object):
         )
         py_frame3.place(x=590, y=5)
         if self.handle_case:
-            context = self.handle_case.get_current_case_log()
+            context_list = self.handle_case.get_current_case_log()
         else:
-            context = "None!!!"
-        if not context:
-            context = " "
+            context_list = "None!!!"
+        if not context_list:
+            context_list = " "
         scroll = tk.Scrollbar()
         sb = tk.Scrollbar(py_frame3)
         # sb.place(x=316,y=5)
@@ -160,14 +160,17 @@ class HandleWindows(object):
             py_frame3, width=b_width - 1, height=b_height, yscrollcommand=sb.set
         )
 
-        print("context:{}".format(context))
+        print("context:{}".format(context_list))
         # sb.config(command=log_text.yview)
-        log_text.insert(tk.INSERT, context)
+        for context in context_list:
+            log_text.insert(tk.INSERT, context)
         # log_text.place(x=5, y=5)
         log_text.pack(side=tk.LEFT, fill=tk.BOTH)
         sb.pack(side=tk.RIGHT, fill=tk.Y)
         sb.config(command=log_text.yview)
         log_text.bind("<Control-f>", self._search_log)
+        log_text.bind("<Control-n>", self._next_search)
+        log_text.bind("<Control-b>", self._last_search)
         self.log_text = log_text
 
         sb.config(command=log_text.yview)
@@ -347,17 +350,52 @@ class HandleWindows(object):
         print("ctl+f --->search")
         res = askstring("Search", "Key Words")
         print(res)
-        context = self.handle_case.get_current_case_log()
-        tmp_list = context.split(res)
         self.log_text.delete("0.0", "end")
         self.log_text.tag_delete("1.0", "end")
         self.log_text.tag_config("blue", foreground="blue")
-        for index in range(len(tmp_list) - 1):
-            self.log_text.insert(tk.CURRENT, tmp_list[index])
-            self.log_text.insert(tk.CURRENT, res, "blue")
-        self.log_text.insert(tk.CURRENT, tmp_list[-1])
+        search_result_index_list = []
+        search_result_current_index = -1
+        search_result_total_line = 0
+        line_index = 0
+        context_list = self.handle_case.get_current_case_log()
+        search_result_total_line = len(context_list)
+        print("-----= {}".format(context_list))
+        for context in context_list:
+            line_index = line_index + 1
+            tmp_list = context.split(res)
+            if len(tmp_list) > 1:
+                for index in range(len(tmp_list) - 1):
+                    search_result_index_list.append(line_index)
+                    self.log_text.insert(tk.CURRENT, tmp_list[index])
+                    self.log_text.insert(tk.CURRENT, res, "blue")
+            self.log_text.insert(tk.CURRENT, tmp_list[-1])
         # self.log_text.place(x=5, y=5)
         self.log_text.pack(side=tk.LEFT, fill=tk.BOTH)
+        self.search_result_index_list = search_result_index_list
+        self.search_result_current_index = search_result_current_index
+        self.search_result_total_line = search_result_total_line
+
+    def _next_search(self, event):
+        self.search_result_current_index = self.search_result_current_index + 1
+        if (
+            not self.search_result_current_index
+            > len(self.search_result_index_list) - 1
+        ):
+            index = self.search_result_index_list[self.search_result_current_index]
+        else:
+            index = self.search_result_index_list[-1]
+        locate = index / (self.search_result_total_line * 1.0)
+        self.log_text.yview_moveto("%.3f" % locate)
+        # pass
+
+    def _last_search(self, event):
+        self.search_result_current_index = self.search_result_current_index - 1
+        if not self.search_result_current_index < 0:
+            index = self.search_result_index_list[self.search_result_current_index]
+        else:
+            index = self.search_result_index_list[0]
+        locate = index / (self.search_result_total_line * 1.0)
+        self.log_text.yview_moveto("%.3f" % locate)
 
     """
     ##废弃
