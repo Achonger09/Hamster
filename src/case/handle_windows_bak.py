@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
 import sys, os
+import math
 from handle_case import HandleCase
 from config_load import ConfigLoad
 from tkinter import filedialog
@@ -354,14 +355,15 @@ class HandleWindows(object):
         self.log_text.tag_delete("1.0", "end")
         self.log_text.tag_config("blue", foreground="blue")
         search_result_index_list = []
-        search_result_current_index = -1
+        search_result_current_index = 0
         search_result_total_line = 0
         line_index = 0
         context_list = self.handle_case.get_current_case_log()
-        search_result_total_line = len(context_list)
+        #search_result_total_line = len(context_list)
         print("-----= {}".format(context_list))
         for context in context_list:
-            line_index = line_index + 1
+            line_index = search_result_total_line + math.floor(len(context)/44)
+            search_result_total_line += math.ceil(len(context)/44)
             tmp_list = context.split(res)
             if len(tmp_list) > 1:
                 for index in range(len(tmp_list) - 1):
@@ -374,28 +376,34 @@ class HandleWindows(object):
         self.search_result_index_list = search_result_index_list
         self.search_result_current_index = search_result_current_index
         self.search_result_total_line = search_result_total_line
+        print("-------------{}/{}".format(search_result_index_list,search_result_total_line))
 
     def _next_search(self, event):
-        self.search_result_current_index = self.search_result_current_index + 1
+
         if (
-            not self.search_result_current_index
-            > len(self.search_result_index_list) - 1
+            self.search_result_current_index
+            < len(self.search_result_index_list) - 1
         ):
+            self.search_result_current_index = self.search_result_current_index + 1
             index = self.search_result_index_list[self.search_result_current_index]
         else:
             index = self.search_result_index_list[-1]
         locate = index / (self.search_result_total_line * 1.0)
-        self.log_text.yview_moveto("%.3f" % locate)
+        self.log_text.yview_moveto("%.4f" % locate)
+        print("*************************************{}/{}".format(index,self.search_result_total_line))
+        print("*************************************{}".format("%.4f" % locate))
         # pass
 
     def _last_search(self, event):
-        self.search_result_current_index = self.search_result_current_index - 1
-        if not self.search_result_current_index < 0:
+        if self.search_result_current_index > 0:
+            self.search_result_current_index = self.search_result_current_index - 1
             index = self.search_result_index_list[self.search_result_current_index]
         else:
             index = self.search_result_index_list[0]
         locate = index / (self.search_result_total_line * 1.0)
-        self.log_text.yview_moveto("%.3f" % locate)
+        self.log_text.yview_moveto("%.4f" % locate)
+        print("*************************************{}/{}".format(index,self.search_result_total_line))
+        print("*************************************{}".format("%.4f" % locate))
 
     """
     ##废弃

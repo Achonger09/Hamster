@@ -78,10 +78,16 @@ class HandleCase(object):
         if log_path:
             ##待适配为读取文件内容
             log_list = []
-            with open(log_path, "r", encoding="ISO-8859-1") as f:
-                for log in f.readlines():
-                    log_list.append(log)
+            #with open(log_path, "r", encoding="ISO-8859-1") as f:
+            try:
+                with open(log_path, "r", encoding="utf-8") as f:
+                    for log in f.readlines():
+                        log_list.append(log)
             # log = log_path
+            except Exception as e:
+                with open(log_path, "r", encoding="ISO-8859-1") as f:
+                    for log in f.readlines():
+                        log_list.append(log)
             self.set_current_log(log_list)
         return self.get_current_case().get_case_log()
 

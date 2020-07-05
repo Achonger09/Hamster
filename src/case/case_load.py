@@ -48,10 +48,12 @@ class CaseLoad(object):
             case_result = self.table.cell(i, self.case_result_index).value
             case_note = self.table.cell(i, self.case_note_index).value
             case_review = self.table.cell(i, self.case_review_index).value
+            if self.case_result_index == 0:
+                case_result = case_review = case_note = " "
 
             if case_name.replace(" ", "") == "":
                 continue
-            print("ADD : " + case_name + case_step + case_except)
+            print("ADD : " + case_name + case_step + case_except + case_review + str(self.case_review_index))
             ##目前只使用casename,casestep初始化，后续有变动在适配
             case_list.append(
                 Case(
