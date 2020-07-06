@@ -148,11 +148,11 @@ class HandleWindows(object):
         )
         py_frame3.place(x=590, y=5)
         if self.handle_case:
-            context_list = self.handle_case.get_current_case_log()
+            context = self.handle_case.get_current_case_log()
         else:
-            context_list = "None!!!"
-        if not context_list:
-            context_list = " "
+            context = "None!!!"
+        if not context:
+            context = " "
         scroll = tk.Scrollbar()
         sb = tk.Scrollbar(py_frame3)
         # sb.place(x=316,y=5)
@@ -161,10 +161,10 @@ class HandleWindows(object):
             py_frame3, width=b_width - 1, height=b_height, yscrollcommand=sb.set
         )
 
-        print("context:{}".format(context_list))
+        #print("context:{}".format(context_list))
         # sb.config(command=log_text.yview)
-        for context in context_list:
-            log_text.insert(tk.INSERT, context)
+        #for context in context_list:
+        log_text.insert(tk.INSERT, context)
         # log_text.place(x=5, y=5)
         log_text.pack(side=tk.LEFT, fill=tk.BOTH)
         sb.pack(side=tk.RIGHT, fill=tk.Y)
@@ -358,7 +358,8 @@ class HandleWindows(object):
         search_result_current_index = 0
         search_result_total_line = 0
         line_index = 0
-        context_list = self.handle_case.get_current_case_log()
+        log_context = self.handle_case.get_current_case_log()
+        context_list = log_context.split("\n")
         #search_result_total_line = len(context_list)
         print("-----= {}".format(context_list))
         for context in context_list:
@@ -370,7 +371,7 @@ class HandleWindows(object):
                     search_result_index_list.append(line_index)
                     self.log_text.insert(tk.CURRENT, tmp_list[index])
                     self.log_text.insert(tk.CURRENT, res, "blue")
-            self.log_text.insert(tk.CURRENT, tmp_list[-1])
+            self.log_text.insert(tk.CURRENT, tmp_list[-1]+"\n")
         # self.log_text.place(x=5, y=5)
         self.log_text.pack(side=tk.LEFT, fill=tk.BOTH)
         self.search_result_index_list = search_result_index_list
