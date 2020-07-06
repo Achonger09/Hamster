@@ -3,6 +3,7 @@
 import tkinter as tk
 import sys,os
 sys.path.append(os.path.abspath('../config/'))
+sys.path.append(os.path.abspath('../../'))
 print(os.path.abspath('../config/'))
 from config_load import ConfigLoad
 from src.case.handle_case import  HandleCase
@@ -13,25 +14,29 @@ import re
 class HandleWindows(object):
     ##处理windows窗体函数，目前纸打印窗体，具体功能待添加
     ##窗口信息计划从配置文件读取，目前都是写死的
-    def __init__(self,cfg):
+    def __init__(self):
         self.pwd = os.getcwd()
         print(self.pwd)
-        root_size = cfg.get("windows","root_size")
-        root_title = cfg.get("windows","root_title")
-        log_path=cfg.get("path","log_path")
+        root_size = "1170x600"
+        #root_size = cfg.get("windows","root_size")
+        #root_title = cfg.get("windows","root_title")
+        #log_path=cfg.get("path","log_path")
+        root_title = "windows"
+        log_path = ''
         print(log_path)
         self.log_path = log_path
-        excel_path = cfg.get("path","excel_path")
+        #excel_path = cfg.get("path","excel_path")
+        excel_path = ""
         root_windows = tk.Tk()
         root_windows.title(root_title)
         root_windows.geometry(root_size)
         if excel_path and os.path.exists(excel_path) and os.path.isfile(excel_path):
-            ha = HandleCase(excel_path,cfg)
+            ha = HandleCase(excel_path)
         else:
             ha = None
         self.handle_case = ha
         self.root_windows = root_windows
-        self.cfg = cfg
+        #self.cfg = cfg
 
     def _show_case_list(self,text = "Case List",f_width = 220,f_height = 520,b_width=28,b_height=27):
         py_frame1 = tk.LabelFrame(self.root_windows,text = "Case List",width = f_width,height = f_height)
@@ -125,7 +130,7 @@ class HandleWindows(object):
         ##通过文件管理器获取excel表路径
         case_path = filedialog.askopenfilename(initialdir=self.log_path)
         print(case_path)
-        self.handle_case = HandleCase(case_path,self.cfg)
+        self.handle_case = HandleCase(case_path)
         self._show_case_list()
         self._show_case_steps()
         self._show_case_logs()
@@ -187,13 +192,11 @@ class HandleWindows(object):
         self._show_record_button()
         tk.mainloop()
 
-    def func_update(self):
-        ##已废弃
-        pass
 
 
 if __name__ == '__main__':
-    config = ConfigLoad()
+    #config = ConfigLoad()
     #print(config.get("windows","size"))
-    windows = HandleWindows(config)
+    #windows = HandleWindows(config)
+    windows = HandleWindows()
     windows.run_windows()
