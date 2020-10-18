@@ -4,10 +4,11 @@ from match_data  import MatchDATA
 from handle_excel import HandleExcel
 from down_html import DownHtml
 
-def write_excel_with_re_data(section,func_name,**kargs):
+def write_excel_with_re_data(section,**kargs):
     '''
     根据section,取key,value,匹配data,写入excel
     '''
+    func_name = ld.get_title_key(section, "Function")
     keystr_list = ld.get_all_title_key(section)
     ## 遍历config中Type1的key
     for keystr in keystr_list:
@@ -24,8 +25,8 @@ config_path = './.config/config.ini'
 timestr = time.strftime("%d-%H-%M-%S")
 output_excel_path = './excel/result-%s.xlsx' % timestr
 pipe_name = 'data1'
-username = "xxxxx"
-passwd = "xxx"
+username = "987456188@qq.com"
+passwd = "ZYC199299zyc"
 url = 'https://github.com/login'
 html_source = "https://github.com/Achonger09/gitbook/commits/master"
 html_path = './source/Commits · Achonger09_gitbook.html'
@@ -42,16 +43,15 @@ md = MatchDATA(html_path)
 he = HandleExcel(source_excel_path)
 
 sections = ld.get_all_sections()
+sections.remove("Function")
 print(sections)
 ## type1使用get_default_re_result匹配数据
 section = sections[0]
-func = 'get_default_re_result'
-write_excel_with_re_data(section,func)
+write_excel_with_re_data(section)
 
 ## type2使用get_custome_result匹配数据
 section2 = sections[1]
-func2 = 'get_custome_result'
-write_excel_with_re_data(section2,func2,source_str='custome')
+write_excel_with_re_data(section2,source_str='custome')
 
 ## 保存excel
 he.save(output_excel_path)
