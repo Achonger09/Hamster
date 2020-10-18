@@ -21,7 +21,7 @@ class MatchDATA(object):
         '''
         return self.re_format
     
-    def get_re_result(self, key_str, source_str=None):
+    def get_default_re_result(self, key_str, source_str=None):
         '''
         返回满足条件的data
         '''
@@ -32,6 +32,12 @@ class MatchDATA(object):
         res = re.search(format, source_str)
         print('find result :%s' % res.group(1))
         return res.group(1)
+    
+    def get_custome_result(self, key_str, source_str):
+        '''
+        返回自定义re满足条件的data
+        '''
+        return 'custome'
 
 '''
 md = MatchDATA()
