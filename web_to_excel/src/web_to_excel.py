@@ -2,6 +2,7 @@ import time
 from load_config import LoadConfig
 from match_data  import MatchDATA
 from handle_excel import HandleExcel
+from down_html import DownHtml
 
 def write_excel_with_re_data(section,func_name,**kargs):
     '''
@@ -20,19 +21,28 @@ def write_excel_with_re_data(section,func_name,**kargs):
         he.write_by_name(pipe_name, keystr,data)
 
 config_path = './.config/config.ini'
-html_path = './source/Commits · Achonger09_gitbook.html'
-source_excel_path = './excel/source.xlsx'
 timestr = time.strftime("%d-%H-%M-%S")
 output_excel_path = './excel/result-%s.xlsx' % timestr
 pipe_name = 'data1'
+username = "xxxxx"
+passwd = "xxx"
+url = 'https://github.com/login'
+html_source = "https://github.com/Achonger09/gitbook/commits/master"
+html_path = './source/Commits · Achonger09_gitbook.html'
+source_excel_path = './excel/source.xlsx'
+
+## 下载html source文件
+dh = DownHtml(url,html_path)
+dh.login(username,passwd)
+dh.download_html(html_source)
 
 ##初始化
 ld = LoadConfig(config_path)
 md = MatchDATA(html_path)
 he = HandleExcel(source_excel_path)
+
 sections = ld.get_all_sections()
 print(sections)
-
 ## type1使用get_default_re_result匹配数据
 section = sections[0]
 func = 'get_default_re_result'
@@ -45,5 +55,3 @@ write_excel_with_re_data(section2,func2,source_str='custome')
 
 ## 保存excel
 he.save(output_excel_path)
-
-
